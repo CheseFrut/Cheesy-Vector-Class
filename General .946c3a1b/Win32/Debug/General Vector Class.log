@@ -1,98 +1,31 @@
 ﻿  main.cpp
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867: 'std::array<T,1>::data': non-standard syntax; use '&' to create a pointer to member
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         ]
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244: '+=': conversion from 'const T' to '_Ty', possible loss of data
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         with
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         [
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:             T=float
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         ]
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         and
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         [
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:             _Ty=int
+C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         ]
   (compiling source file 'main.cpp')
-      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111):
+      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28):
       the template instantiation context (the oldest one first) is
-          C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(300,33):
-          see reference to class template instantiation 'Vectors::Vector<int,1,Vectors::DEFAULT_MEMORY_STRUCTURE<T,1>>' being compiled
+          C:\Users\T\Documents\GitHub\General Vector Class CPP\main.cpp(12,31):
+          see reference to function template instantiation 'const Vectors::Vector<int,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> Vectors::operator +<float,3,VEC3_MEM_STRUCT<float>>(const Vectors::Vector<T,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> &,const Vectors::Vector<float,3,VEC3_MEM_STRUCT<float>> &)' being compiled
+          with
+          [
+              T=int
+          ]
+              C:\Users\T\Documents\GitHub\General Vector Class CPP\main.cpp(12,14):
+              see the first reference to 'Vectors::operator +' in 'main'
+          C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(209,27):
+          see reference to function template instantiation 'Vectors::Vector<int,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> Vectors::Vector<T,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>>::operator +=<float,3,VEC3_MEM_STRUCT<float>>(const Vectors::Vector<float,3,VEC3_MEM_STRUCT<float>> &)' being compiled
           with
           [
               T=int
           ]
   
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2332: 'struct': missing tag name
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306: 'Vectors::Vector<int,1,Vectors::DEFAULT_MEMORY_STRUCTURE<T,1>>::<unnamed-tag>': unnamed class template is not allowed
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913: explicit specialization; 'Vectors::Vector<int,1,Vectors::DEFAULT_MEMORY_STRUCTURE<T,1>>::<unnamed-tag>' is not a specialization of a class template
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955: 'Vectors::Vector<int,1,Vectors::DEFAULT_MEMORY_STRUCTURE<T,1>>::DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY': use of class template requires template argument list
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         ]
-  (compiling source file 'main.cpp')
-      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(49,9):
-      see declaration of 'Vectors::Vector<int,1,Vectors::DEFAULT_MEMORY_STRUCTURE<T,1>>::DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY'
-          with
-          [
-              T=int
-          ]
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2338: static_assert failed: 'Memory structure requires the following member: 
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2338: std::array<typename T, std::size_t Dim> data'
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867: 'std::array<T,3>::data': non-standard syntax; use '&' to create a pointer to member
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111): error C3867:         ]
-  (compiling source file 'main.cpp')
-      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,111):
-      the template instantiation context (the oldest one first) is
-          C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(301,31):
-          see reference to class template instantiation 'Vectors::Vector<int,3,Vectors::DEFAULT_MEMORY_STRUCTURE<T,3>>' being compiled
-          with
-          [
-              T=int
-          ]
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306: 'Vectors::Vector<int,3,Vectors::DEFAULT_MEMORY_STRUCTURE<T,3>>::<unnamed-tag>': unnamed class template is not allowed
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C3306:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913: explicit specialization; 'Vectors::Vector<int,3,Vectors::DEFAULT_MEMORY_STRUCTURE<T,3>>::<unnamed-tag>' is not a specialization of a class template
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(53,9): error C2913:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955: 'Vectors::Vector<int,3,Vectors::DEFAULT_MEMORY_STRUCTURE<T,3>>::DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY': use of class template requires template argument list
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:             T=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(64,64): error C2955:         ]
-  (compiling source file 'main.cpp')
-      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(49,9):
-      see declaration of 'Vectors::Vector<int,3,Vectors::DEFAULT_MEMORY_STRUCTURE<T,3>>::DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY'
-          with
-          [
-              T=int
-          ]
-  
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(303,32): fatal  error C1907: unable to recover from previous error(s); stopping compilation
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(303,32): message : the template instantiation context (the oldest one first) is
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(303,27): message : see reference to function template instantiation 'Vectors::Vector<T,Dim,MEMORY_STRUCTURE> Vectors::Vector(T,Args...)' being compiled
-  INTERNAL COMPILER ERROR in 'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\HostX86\x86\CL.exe'
-      Please choose the Technical Support command on the Visual C++
-      Help menu, or open the Technical Support help file for more information
+  Vector.cpp
+  Generating Code...
+  General Vector Class.vcxproj -> C:\Users\T\Documents\GitHub\General Vector Class CPP\Builds\Win32\Debug\General Vector Class.exe

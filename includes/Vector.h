@@ -27,7 +27,7 @@ private:
 
 	using MEMORY_STRUCTURE::data;
 
-	// variadic handlers
+	// Variadic constructor helpers
 
 	constexpr void set_at(uint idx, const T& value) {
 		this->data[idx] = value;
@@ -43,17 +43,17 @@ private:
 		set_from_variadic_indexer(std::make_index_sequence<sizeof ... (Args)>{}, std::forward<Args>(args)...);
 	}
 
-	// check if MEMORY_STRUCTURE has a member std::array<T, Dim> called name
+	// Check if MEMORY_STRUCTURE has a member std::array<T, Dim> called data
 
-	template <typename = void>
+	template <typename = std::void_t<>>
 	struct DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY 
 		: std::false_type { };
 
 	template <>
-	struct DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY<std::void_t<decltype(std::declval<std::array<T, Dim>>().data)>>
+	struct DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY<std::void_t<decltype(std::declval<MEMORY_STRUCTURE>().data)>>
 		: std::true_type { };
 
-public:
+	// Assertion checks
 
 	static_assert(std::is_arithmetic<T>::value,
 		"T must be an arithmetic type.");
@@ -61,10 +61,13 @@ public:
 	static_assert(Dim > 0,
 		"Vector cannot have 0 dimensions.");
 
-	static_assert(DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY::value,
+	static_assert(DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY<>::value,
 		"Memory structure requires the following member: \nstd::array<typename T, std::size_t Dim> data");
 
+public:
+
 	using valueType = T;
+
 	static constexpr uint dimensionCount = Dim;
 
 	explicit constexpr Vector(T value = T{}) { data.fill(value); }
@@ -132,6 +135,18 @@ public:
 		return ostream;
 	}
 
+	// = operator
+
+	template <typename T1, uint Dim1, typename MEMORY_STRUCTURE1>
+	constexpr THIS_TYPE operator = (const Vector<T1, Dim1, MEMORY_STRUCTURE1>& other) {
+		for (uint i = 0; i < std::min(Dim, Dim1); i++) {
+			this->data[i] = other[i];
+		}
+		return SELF;
+	}
+
+	// arithmetic operators
+
 	template <typename T1, uint Dim1, typename MEMORY_STRUCTURE1>
 	constexpr THIS_TYPE operator *= (const Vector<T1, Dim1, MEMORY_STRUCTURE1>& other) {
 		for (uint i = 0; i < std::min(Dim, Dim1); i++) {
@@ -189,22 +204,15 @@ public:
 		return SELF;
 	}
 
-	// +
-
 	template <typename T1, uint Dim1, typename MEMORY_STRUCTURE1> requires (Dim >= Dim1)
 	friend constexpr const THIS_TYPE operator + (const THIS_TYPE& first, const Vector<T1, Dim1, MEMORY_STRUCTURE1>& other) {
 		return THIS_TYPE(first) += other;
 	}
 
-	// -
-
 	template <typename T1, uint Dim1, typename MEMORY_STRUCTURE1> requires (Dim >= Dim1)
 	friend constexpr const THIS_TYPE operator - (const THIS_TYPE& first, const Vector<T1, Dim1, MEMORY_STRUCTURE1>& other) {
 		return THIS_TYPE(first) -= other;
 	}
-
-	// *
-
 
 	template <typename T1, uint Dim1, typename MEMORY_STRUCTURE1> requires (Dim >= Dim1)
 	friend constexpr const THIS_TYPE operator * (const THIS_TYPE& first, const Vector<T1, Dim1, MEMORY_STRUCTURE1>& other) {
@@ -284,17 +292,16 @@ public:
 	}
 
 	template <typename T1>
-	inline constexpr const THIS_TYPE Fill(const T1 value) {
+	static inline constexpr const THIS_TYPE Fill(const T1 value) {
 
-		static_assert(std::is_arithmetic<T>::value,
+		static_assert(std::is_arithmetic<T1>::value,
 			"Vector.Fill(): value must be an arithmetic type.");
 
-		data.fill(value);
-		return SELF;
+		THIS_TYPE temp;
+
+		temp.data.fill(static_cast<T>(value));
+		return temp;
 	}
-
-	/// TODO: move all long functions to .cpp file
-
 };
 
 inline constexpr Vector <int,1> Left {-1};
@@ -309,12 +316,15 @@ inline constexpr Vector Forward = Vector{0, 0, 1};
 inline constexpr Vector<int, 4> Ana{0, 0, 0, 1};
 inline constexpr Vector<int, 4> Kata{0, 0, 0, -1};
 
+template<uint Dim>
+static constexpr const Vector<int, Dim> Zero = Vector<int, Dim>::Fill(0);
 
-inline constexpr Vector Zero = Vector(0);
-
-inline constexpr Vector One = Vector(1);
+template<uint Dim>
+static constexpr const Vector<int, Dim> One = Vector<int, Dim>::Fill(1);
 
 } // namespace Vectors
+
+// Vector3
 
 template<typename T>
 struct VEC3_MEM_STRUCT {
@@ -327,13 +337,30 @@ struct VEC3_MEM_STRUCT {
 template<typename T = double>
 struct Vector3 : Vectors::Vector<T, 3, VEC3_MEM_STRUCT<T>> {
 
-	using type = Vectors::Vector<T, 3, VEC3_MEM_STRUCT<T>>;
+	#define TYPE Vectors::Vector<T, 3, VEC3_MEM_STRUCT<T>>
+	using type = TYPE;
 
 public:
 
 	using type::Vector;
 
+	static const Vectors::Vector<int,3>& One;
+	static const Vectors::Vector<int,3>& Zero;
+
 };
+
+template<typename T>
+const Vectors::Vector<int,3>& Vector3<T>::One = Vectors::One<3>;
+template<typename T>
+const Vectors::Vector<int,3>& Vector3<T>::Zero = Vectors::Zero<3>;
+
+#undef TYPE
+
+//template<typename T>
+//const TYPE Vector3<T>::One = Vectors::One<3>;
+//const TYPE Vector3<T>::One = Vectors::Zero<3>;
+
+// Vector4
 
 template<typename T>
 struct VEC4_MEM_STRUCT {
@@ -345,11 +372,22 @@ struct VEC4_MEM_STRUCT {
 
 template<typename T = double>
 struct Vector4 : Vectors::Vector<T, 4, VEC4_MEM_STRUCT<T>> {
+	
+	#define TYPE Vectors::Vector<T, 4, VEC4_MEM_STRUCT<T>>
+	using type = TYPE;
 
-	using type = Vectors::Vector<T, 4, VEC4_MEM_STRUCT<T>>;
 
 public:
 
 	using type::Vector;
 
+	static const Vectors::Vector<int,4>& One;
+	static const Vectors::Vector<int,4>& Zero;
 };
+
+template<typename T>
+const Vectors::Vector<int,4>& Vector4<T>::One = Vectors::One<4>;
+template<typename T>
+const Vectors::Vector<int,4>& Vector4<T>::Zero = Vectors::Zero<4>;
+
+#undef TYPE
