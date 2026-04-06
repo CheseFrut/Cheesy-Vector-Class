@@ -3,14 +3,16 @@
 #include "defines.h"
 #include "FastInvSqrt.h"
 #include <array>
+#include <cmath>
 #include <cstdarg>
+#include <ostream>
 #include <type_traits>
 #include <utility>
-#include <cmath>
-#include <ostream>
 
 namespace Vectors {
 
+	// The memory structure allows you to for example make a vector3 structure that unions the data array with struct { T x, y, z; }
+	// Any custom memory structure requires a member data of type std::array<T, Dim>
 	template<typename T, uint Dim>
 	struct DEFAULT_MEMORY_STRUCTURE {
 		std::array<T, Dim> data{ };
@@ -24,6 +26,8 @@ private:
 	#define THIS_TYPE Vector<T, Dim, MEMORY_STRUCTURE>
 
 	using MEMORY_STRUCTURE::data;
+
+	// variadic handlers
 
 	constexpr void set_at(uint idx, const T& value) {
 		this->data[idx] = value;
@@ -39,6 +43,16 @@ private:
 		set_from_variadic_indexer(std::make_index_sequence<sizeof ... (Args)>{}, std::forward<Args>(args)...);
 	}
 
+	// check if MEMORY_STRUCTURE has a member std::array<T, Dim> called name
+
+	template <typename = void>
+	struct DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY 
+		: std::false_type { };
+
+	template <>
+	struct DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY<std::void_t<decltype(std::declval<std::array<T, Dim>>().data)>>
+		: std::true_type { };
+
 public:
 
 	static_assert(std::is_arithmetic<T>::value,
@@ -46,6 +60,9 @@ public:
 
 	static_assert(Dim > 0,
 		"Vector cannot have 0 dimensions.");
+
+	static_assert(DOES_MEMORY_STRUCTURE_CONTAIN_VALID_DATA_ARRAY::value,
+		"Memory structure requires the following member: \nstd::array<typename T, std::size_t Dim> data");
 
 	using valueType = T;
 	static constexpr uint dimensionCount = Dim;
@@ -266,6 +283,16 @@ public:
 		return return_value;
 	}
 
+	template <typename T1>
+	inline constexpr const THIS_TYPE Fill(const T1 value) {
+
+		static_assert(std::is_arithmetic<T>::value,
+			"Vector.Fill(): value must be an arithmetic type.");
+
+		data.fill(value);
+		return SELF;
+	}
+
 	/// TODO: move all long functions to .cpp file
 
 };
@@ -301,6 +328,25 @@ template<typename T = double>
 struct Vector3 : Vectors::Vector<T, 3, VEC3_MEM_STRUCT<T>> {
 
 	using type = Vectors::Vector<T, 3, VEC3_MEM_STRUCT<T>>;
+
+public:
+
+	using type::Vector;
+
+};
+
+template<typename T>
+struct VEC4_MEM_STRUCT {
+	union {
+		struct { T x, y, z, w; };
+		std::array<T, 4> data { };
+	};
+};
+
+template<typename T = double>
+struct Vector4 : Vectors::Vector<T, 4, VEC4_MEM_STRUCT<T>> {
+
+	using type = Vectors::Vector<T, 4, VEC4_MEM_STRUCT<T>>;
 
 public:
 
