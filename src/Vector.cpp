@@ -1,5 +1,5 @@
 #include "Vector.h"
 
-namespace Vectors {
+namespace Vector {
 
 }

@@ -4,4 +4,17 @@
 
 #define uint
 #define ushort
+
 #define SELF
+
+#define THIS_TYPE
+
+#define OTHER_ARITHMETIC_TYPE
+#define OTHER_ARITHMETIC_TYPE_TEMPLATE
+
+#define OTHER_DIMENTION_COUNT
+#define OTHER_MEMORY_STRUCTURE
+
+#define OTHER_TYPE
+#define OTHER_TYPE_TEMPLATE
+

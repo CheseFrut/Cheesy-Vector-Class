@@ -1,31 +1,81 @@
-﻿  main.cpp
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244: '+=': conversion from 'const T' to '_Ty', possible loss of data
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         with
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:             T=float
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         ]
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         and
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         [
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:             _Ty=int
-C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28): warning C4244:         ]
+﻿  Vector2.cpp
+  Vector3.cpp
+  Vector4.cpp
+  main.cpp
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244: 'argument': conversion from 'T' to 'const T', possible loss of data
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         with
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:             T=int
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         ]
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         and
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:             T=float
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         ]
   (compiling source file 'main.cpp')
-      C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(169,28):
-      the template instantiation context (the oldest one first) is
-          C:\Users\T\Documents\GitHub\General Vector Class CPP\main.cpp(12,31):
-          see reference to function template instantiation 'const Vectors::Vector<int,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> Vectors::operator +<float,3,VEC3_MEM_STRUCT<float>>(const Vectors::Vector<T,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> &,const Vectors::Vector<float,3,VEC3_MEM_STRUCT<float>> &)' being compiled
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,20):
+      while evaluating constexpr function 'Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic'
           with
           [
-              T=int
+              T=float
           ]
-              C:\Users\T\Documents\GitHub\General Vector Class CPP\main.cpp(12,14):
-              see the first reference to 'Vectors::operator +' in 'main'
-          C:\Users\T\Documents\GitHub\General Vector Class CPP\includes\Vector.h(209,27):
-          see reference to function template instantiation 'Vectors::Vector<int,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>> Vectors::Vector<T,4,Vectors::DEFAULT_MEMORY_STRUCTURE<T,4>>::operator +=<float,3,VEC3_MEM_STRUCT<float>>(const Vectors::Vector<float,3,VEC3_MEM_STRUCT<float>> &)' being compiled
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,10):
+          see reference to class template instantiation '_Vector3T<float>' being compiled
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\Vector3.h(30,57):
+          see reference to function template instantiation 'Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::_VectorT<int,int>(T,int,int)' being compiled
           with
           [
-              T=int
+              T=float
+          ]
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,3):
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic<T&,int&,int&>(T &,int &,int &)' being compiled
+          with
+          [
+              T=float
+          ]
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(43,3):
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic_indexer<0,1,2,T&,int&,int&>(std::integer_sequence<size_t,0,1,2>,T &,int &,int &)' being compiled
+          with
+          [
+              T=float
+          ]
+  
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244: 'argument': conversion from 'double' to 'const T', possible loss of data
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         with
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:             T=float
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         ]
+  (compiling source file 'main.cpp')
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,24):
+          see reference to function template instantiation '_Vector3T<float>::_Vector3T<double,float>(T,double,float)' being compiled
+          with
+          [
+              T=float
+          ]
+              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,24):
+              see the first reference to '_Vector3T<float>::_Vector3T' in 'main'
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(25,1):
+          see reference to function template instantiation 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::_VectorT<double,float>(T,double,float)' being compiled
+          with
+          [
+              T=float
+          ]
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,3):
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic<T&,double&,float&>(T &,double &,float &)' being compiled
+          with
+          [
+              T=float
+          ]
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(43,3):
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic_indexer<0,1,2,T&,double&,T&>(std::integer_sequence<size_t,0,1,2>,T &,double &,T &)' being compiled
+          with
+          [
+              T=float
           ]
   
   Vector.cpp
   Generating Code...
-  General Vector Class.vcxproj -> C:\Users\T\Documents\GitHub\General Vector Class CPP\Builds\Win32\Debug\General Vector Class.exe
+  General Vector Class.vcxproj -> C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\Builds\Win32\Debug\General Vector Class.exe
