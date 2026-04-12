@@ -167,7 +167,7 @@ public:
 			this->data[i] = other[i];
 		}
 
-		for (uint i = OTHER_DIMENTION_COUNT - 1; i < nDim; i++) {
+		for (uint i = OTHER_DIMENTION_COUNT; i < nDim; i++) {
 			this->data[i] = T{}; // reset to the type's default value (usually 0)
 		}
 		return SELF;
@@ -177,16 +177,6 @@ public:
 	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
 
 		for (uint i = 0; i < nDim; i++) {
-			this->data[i] = other[i];
-		}
-		return SELF;
-	}
-
-	// == operator
-
-	OTHER_TYPE_TEMPLATE
-		constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
-		for (uint i = 0; i < OTHER_DIMENTION_COUNT; i++) {
 			this->data[i] = other[i];
 		}
 		return SELF;
@@ -320,6 +310,34 @@ public:
 		}
 		return return_vector;
 	}
+
+	// Vector == Vector
+
+	OTHER_TYPE_TEMPLATE requires (nDim >= OTHER_DIMENTION_COUNT)
+	friend constexpr const bool operator == (const THIS_TYPE& first, const OTHER_TYPE& other) {
+		
+		for (uint i = 0; i < OTHER_DIMENTION_COUNT; i++) {
+			if (first[i] != other[i]) return false;
+		}
+
+		// if the first vector is larger than the other, 
+		// ensure the extra dimensions of the first vector are filled with default values (0)
+		for (uint i = OTHER_DIMENTION_COUNT; i < nDim; i++) {
+			if (first[i] != T{}) 
+				return false;
+		}
+
+		return true;
+	}
+
+	// Vector != Vector
+
+	OTHER_TYPE_TEMPLATE
+	friend constexpr const bool operator != (const THIS_TYPE& first, const OTHER_TYPE& other) {
+		return !(first == other);
+	}
+
+	// functions
 
 	/// <summary>
 	/// Returns the distance of the vector squared.

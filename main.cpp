@@ -45,6 +45,14 @@ int main(int argc, char** argv) {
 	PerformUnitTest(test.Dot(Vector3::One * 3), 9);
 	PerformUnitTest(Vector3::Left.Dot(Vector::One<3> * 3), -3);
 
+	// Equality
+
+	PerformUnitTest(Vector3(0, 1, 0) == Vector::Up, 1);
+	PerformUnitTest(Vector3(0, 1, 0) != Vector::Up, 0);
+
+	PerformUnitTest(Vector::Up == Vector3(1, 1, 1), 0);
+	PerformUnitTest(Vector::Up != Vector3(1, 1, 1), 1);
+
 	EndUnitTests();
 	
 	return 0;

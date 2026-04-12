@@ -38,17 +38,17 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(55,17):
               T=float
           ]
   
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244: '*=': conversion from 'const T1' to '_Ty', possible loss of data
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         with
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         [
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:             T1=double
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         ]
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         and
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         [
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:             _Ty=float
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21): warning C4244:         ]
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244: '*=': conversion from 'const T1' to '_Ty', possible loss of data
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         with
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:             T1=double
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         ]
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         and
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:             _Ty=float
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21): warning C4244:         ]
   (compiling source file 'main.cpp')
-      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21):
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21):
       the template instantiation context (the oldest one first) is
           C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(34,24):
           see reference to function template instantiation 'const Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> Vector::operator *<double>(const Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> &,const T1 &)' being compiled
@@ -59,7 +59,7 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21)
           ]
               C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(34,17):
               see the first reference to 'Vector::operator *' in 'main'
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(313,28):
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(303,28):
           see reference to function template instantiation 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> &Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::operator *=<T1>(const T1 &)' being compiled
           with
           [
@@ -67,9 +67,9 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(233,21)
               T1=double
           ]
   
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(363,17): warning C4056: overflow in floating-point constant arithmetic
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(379,17): warning C4056: overflow in floating-point constant arithmetic
   (compiling source file 'main.cpp')
-      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(363,17):
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(379,17):
       the template instantiation context (the oldest one first) is
           C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(40,56):
           see reference to class template instantiation 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>' being compiled
@@ -77,13 +77,13 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(363,17)
           [
               T=float
           ]
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(351,30):
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(367,30):
           while compiling class template member function 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>> &Vector::_VectorT<T,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalise(void)'
           with
           [
               T=float
           ]
-              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(387,3):
+              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(403,3):
               see the first reference to 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalise' in 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalised'
           with
           [
