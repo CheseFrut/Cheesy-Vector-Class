@@ -6,7 +6,7 @@ This library provides a templated base vector class of arbitrary length and data
 It has been used to make a Vector2, Vector3, and Vector4 type, along with integer, short, and double variants of each.
 
 ```cpp
-{
+int main() {
     Vector3 foo(1, 2, 3); // floating point 3D Vector
     Vector2I bar(3, 4); // integer 2D Vector
 
@@ -18,7 +18,7 @@ The base class also gives the user freedom to, for example, union the first valu
 
 The base class was also used to make a Colour and ColourRGB type. Colour has 4 dimensions and ColourRGB has 3.
 ```cpp
-{
+int main() {
     Colour foo = Vector::Forward; // Vector(0,0,1)
     ColourRGB bar = Colour(0.1, 1, 0);
 
