@@ -19,7 +19,7 @@ It has also been used to make a Colour and ColourRGB type. Colour has 4 dimensio
     Colour foo = Vector::Forward; // Vector(0,0,1)
     ColourRGB bar = Colour(0.1, 1, 0);
 
-    foo += bar; // foo = Colour(0.1, 1, 1, 0)
+    foo += bar; // foo = Colour(0.1,1,1,0)
 }
 ```
 
