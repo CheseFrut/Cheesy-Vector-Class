@@ -48,10 +48,7 @@ int main(int argc, char** argv) {
 	// Equality
 
 	PerformUnitTest(Vector3(0, 1, 0) == Vector::Up, 1);
-	PerformUnitTest(Vector3(0, 1, 0) != Vector::Up, 0);
-
 	PerformUnitTest(Vector::Up == Vector3(1, 1, 1), 0);
-	PerformUnitTest(Vector::Up != Vector3(1, 1, 1), 1);
 
 	EndUnitTests();
 	

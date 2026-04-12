@@ -67,9 +67,9 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(223,21)
               T1=double
           ]
   
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(379,17): warning C4056: overflow in floating-point constant arithmetic
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(381,17): warning C4056: overflow in floating-point constant arithmetic
   (compiling source file 'main.cpp')
-      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(379,17):
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(381,17):
       the template instantiation context (the oldest one first) is
           C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(40,56):
           see reference to class template instantiation 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>' being compiled
@@ -77,13 +77,13 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(379,17)
           [
               T=float
           ]
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(367,30):
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(369,30):
           while compiling class template member function 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>> &Vector::_VectorT<T,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalise(void)'
           with
           [
               T=float
           ]
-              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(403,3):
+              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(405,3):
               see the first reference to 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalise' in 'Vector::_VectorT<float,100,Vector::DEFAULT_MEMORY_STRUCTURE<T,100>>::Normalised'
           with
           [
