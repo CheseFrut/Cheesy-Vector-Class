@@ -7,8 +7,8 @@ It has been used to make a Vector2, Vector3, and Vector4 type, along with intege
 
 ```cpp
 {
-    Vector3 foo(1, 2, 3);
-    Vector2I bar(3, 4);
+    Vector3 foo(1, 2, 3); // floating point 3D Vector
+    Vector2I bar(3, 4); // integer 2D Vector
 
     foo.x = bar.y; // 4
 }
