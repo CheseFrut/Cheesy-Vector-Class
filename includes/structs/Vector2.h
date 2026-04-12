@@ -1,6 +1,9 @@
 #pragma once
 #include "Vector.h"
 
+#define uint unsigned int
+#define SELF (*this)
+
 #define N_DIMS 2
 
 template<typename T>
@@ -38,6 +41,9 @@ struct _Vector2T : public THIS_TYPE {
 
 #undef THIS_TYPE
 #undef N_DIMS
+
+#undef uint
+#undef SELF
 
 typedef _Vector2T <double> Vector2D;
 typedef _Vector2T <float> Vector2;

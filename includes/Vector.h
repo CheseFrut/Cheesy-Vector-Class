@@ -1,6 +1,5 @@
 #pragma once
 
-#include "defines.h"
 #include "FastInvSqrt.h"
 #include <array>
 #include <cmath>
@@ -8,6 +7,9 @@
 #include <ostream>
 #include <type_traits>
 #include <utility>
+
+#define uint unsigned int
+#define SELF (*this)
 
 namespace Vector {
 
@@ -483,3 +485,6 @@ static constexpr const _VectorT<int,nDim> One = _VectorT<int,nDim>::Fill(1);
 #undef THIS_AND_OTHER_TYPE_TEMPLATE
 
 } // namespace Vectors
+
+#undef uint
+#undef SELF

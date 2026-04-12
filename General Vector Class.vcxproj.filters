@@ -39,16 +39,34 @@
     <ClCompile Include="UnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\structs\Vector2.cpp">
+      <Filter>Source Files\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\structs\Vector3.cpp">
+      <Filter>Source Files\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\structs\Vector4.cpp">
+      <Filter>Source Files\Structs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Vector.h">
       <Filter>Header Files\namespace</Filter>
     </ClInclude>
-    <ClInclude Include="includes\defines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\FastInvSqrt.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\structs\Colour.h">
+      <Filter>Header Files\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\structs\Vector2.h">
+      <Filter>Header Files\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\structs\Vector3.h">
+      <Filter>Header Files\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\structs\Vector4.h">
+      <Filter>Header Files\Structs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

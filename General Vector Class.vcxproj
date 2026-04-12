@@ -139,12 +139,18 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\FastInvSqrt.cpp" />
+    <ClCompile Include="src\structs\Vector2.cpp" />
+    <ClCompile Include="src\structs\Vector3.cpp" />
+    <ClCompile Include="src\structs\Vector4.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\defines.h" />
     <ClInclude Include="includes\FastInvSqrt.h" />
+    <ClInclude Include="includes\structs\Colour.h" />
+    <ClInclude Include="includes\structs\Vector2.h" />
+    <ClInclude Include="includes\structs\Vector3.h" />
+    <ClInclude Include="includes\structs\Vector4.h" />
     <ClInclude Include="includes\Vector.h" />
   </ItemGroup>
   <ItemGroup>

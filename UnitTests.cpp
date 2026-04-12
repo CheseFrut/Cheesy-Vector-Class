@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 
+#define uint unsigned int
+#define SELF (*this)
+
 static uint current_unit_test_number;
 static uint total_failures;
 static bool unit_tests_active;
@@ -91,3 +94,6 @@ constexpr static void EndUnitTests() {
 
 	unit_tests_active = false;
 }
+
+#undef uint
+#undef SELF
