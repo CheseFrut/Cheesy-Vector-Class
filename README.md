@@ -3,7 +3,7 @@ c++ library for game-engine vector calculations
 
 This library provides a templated base vector class of arbitrary length and data type. 
 
-It has been used to make a Vector2, Vector3, and Vector4 type, along with integer, short, and double variants of each.
+It has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type, along with `int`, `short`, and `double` variants of each.
 
 ```cpp
 int main() {
@@ -16,7 +16,7 @@ int main() {
 ```
 The base class also gives the user freedom to, for example, union the first value with `x`.
 
-The base class was also used to make a Colour and ColourRGB type. Colour has 4 dimensions and ColourRGB has 3.
+The base class was also used to make a **`Colour`** and **`ColourRGB`** type (with 4 and 3 dimentions respectively).
 ```cpp
 int main() {
     Colour foo = Vector::Forward; // Vector(0,0,1)
@@ -57,5 +57,4 @@ int main() {
 ```
 Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
----
-TODO: Show vector2 + Vector4 and some explicit conversions in the README
+<sub> TODO: Show vector2 + Vector4 and some explicit conversions in the README </sub>
