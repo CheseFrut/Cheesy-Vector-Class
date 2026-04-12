@@ -57,4 +57,4 @@ int main() {
 ```
 Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
-<sub> TODO: Show vector2 + Vector4 and some explicit conversions in the README </sub>
+<sub> **TODO:** Show vector2 + Vector4 and some explicit conversions in the README </sub>
