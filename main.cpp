@@ -44,6 +44,10 @@ int main(int argc, char** argv) {
 	PerformUnitTest(test.Dot(Vector3::One * 3), 9);
 	PerformUnitTest(Vector3::Left.Dot(Vector::One<3> * 3), -3);
 
+	// Vector3 Cross product
+
+	PerformUnitTest(Vector3::Cross((Vector3)Vector::Up, Vector3::Right), { 0, 0, -1 });
+
 	// Equality
 
 	PerformUnitTest(Vector3(0, 1, 0) == Vector::Up, 1);

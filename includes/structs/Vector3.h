@@ -30,6 +30,20 @@ struct _Vector3T : public THIS_TYPE {
 		}
 	}
 
+	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS >= nDim1)
+	explicit _Vector3T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) : _VectorT() {
+		for (uint i = 0; i < nDim1; i++) {
+			SELF[i] = other[i];
+		}
+	}
+
+	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS < nDim1)
+	explicit _Vector3T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
+		for (uint i = 0; i < N_DIMS; i++) {
+			SELF[i] = other[i];
+		}
+	}
+
 	static constexpr const THIS_TYPE Left{ -1, 0, 0 };
 	static constexpr const THIS_TYPE Right{ 1, 0, 0 };
 
@@ -41,6 +55,19 @@ struct _Vector3T : public THIS_TYPE {
 
 	static constexpr const THIS_TYPE One = THIS_TYPE::Fill(1);
 	static constexpr const THIS_TYPE Zero = THIS_TYPE::Fill(0);
+
+	/// <summary>
+	/// Returns the cross product of the LHS and RHS vectors.
+	/// </summary>
+	static constexpr const THIS_TYPE Cross(const THIS_TYPE& lhs, const THIS_TYPE& rhs) {
+		THIS_TYPE return_value;
+
+		return_value.x = lhs.y * rhs.z - rhs.y * lhs.z;
+		return_value.y = lhs.x * rhs.z - rhs.x * lhs.z;
+		return_value.z = lhs.x * rhs.y - rhs.x * lhs.y;
+
+		return return_value;
+	}
 };
 
 #undef THIS_TYPE

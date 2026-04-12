@@ -30,6 +30,20 @@ struct _Vector4T : public THIS_TYPE {
 		}
 	}
 
+	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS >= nDim1)
+		explicit _Vector4T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) : _VectorT() {
+		for (uint i = 0; i < nDim1; i++) {
+			SELF[i] = other[i];
+		}
+	}
+
+	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS < nDim1)
+		explicit _Vector4T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
+		for (uint i = 0; i < N_DIMS; i++) {
+			SELF[i] = other[i];
+		}
+	}
+
 	static constexpr const Vector::_VectorT<T, N_DIMS> Left{ -1, 0, 0, 0 };
 	static constexpr const Vector::_VectorT<T, N_DIMS> Right{ 1, 0, 0, 0 };
 
