@@ -55,7 +55,7 @@ int main() {
 (2, 4, 6)
 (0.5, 1, 1.5)
 ```
-Check out the Vector3.h file to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
+Check out the [Vector3.h](https://github.com/CheseFrut/Cheesy-Vector-Class/blob/main/includes/structs/Vector3.h) file to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
 ---
 TODO: Show vector2 + Vector4 and some explicit conversions in the README
