@@ -13,17 +13,34 @@ namespace Vector {
 
 	// The memory structure allows you to for example make a vector3 structure that unions the data array with struct { T x, y, z; }
 	// Any custom memory structure requires a member data of type std::array<T, nDim>
+
 	template<typename T, uint nDim>
 	struct DEFAULT_MEMORY_STRUCTURE {
 		std::array<T, nDim> data { };
 	};
 
+	// Defines for readability
+
+#define THIS_TYPE _VectorT<T, nDim, MEMORY_STRUCTURE>
+
+#define OTHER_ARITHMETIC_TYPE T1
+
+#define OTHER_DIMENTION_COUNT nDim1
+#define OTHER_MEMORY_STRUCTURE MEMORY_STRUCTURE1
+
+#define OTHER_TYPE _VectorT<T1, nDim1, MEMORY_STRUCTURE1>
+
+#define OTHER_TYPE_TEMPLATE template<typename T1, uint nDim1, typename MEMORY_STRUCTURE1>
+#define THIS_AND_OTHER_TYPE_TEMPLATE template<typename T, uint nDim, typename MEMORY_STRUCTURE, typename T1, uint nDim1, typename MEMORY_STRUCTURE1>
+
+#define OTHER_ARITHMETIC_TYPE_TEMPLATE template <typename T1> requires (std::is_arithmetic<T1>::value)
+
+	// The Vector struct
+
 template <typename T, uint nDim, class MEMORY_STRUCTURE = DEFAULT_MEMORY_STRUCTURE<T, nDim>> 
 struct _VectorT : public MEMORY_STRUCTURE {
 
 private:
-
-	#define THIS_TYPE _VectorT<T, nDim, MEMORY_STRUCTURE>
 
 	using MEMORY_STRUCTURE::data;
 
@@ -78,17 +95,6 @@ public:
 	explicit constexpr _VectorT(T first, Args... args) : _VectorT() {
 		set_from_variadic(first, args...);
 	}
-
-// Defines for readability
-
-#define OTHER_ARITHMETIC_TYPE T1
-#define OTHER_ARITHMETIC_TYPE_TEMPLATE template <typename T1> requires (std::is_arithmetic<T1>::value)
-
-#define OTHER_DIMENTION_COUNT nDim1
-#define OTHER_MEMORY_STRUCTURE MEMORY_STRUCTURE1
-
-#define OTHER_TYPE _VectorT<T1, nDim1, MEMORY_STRUCTURE1>
-#define OTHER_TYPE_TEMPLATE template<typename T1, uint nDim1, typename MEMORY_STRUCTURE1>
 
 	// Converts to a vector with more or an equal number of dimensions. 
 	OTHER_TYPE_TEMPLATE requires (OTHER_DIMENTION_COUNT <= nDim)
@@ -145,8 +151,41 @@ public:
 
 	// = operator
 
-	OTHER_TYPE_TEMPLATE
+	OTHER_TYPE_TEMPLATE requires(nDim == OTHER_DIMENTION_COUNT)
 	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
+
+		for (uint i = 0; i < nDim; i++) {
+			this->data[i] = other[i];
+		}
+		return SELF;
+	}
+
+	OTHER_TYPE_TEMPLATE requires(nDim > OTHER_DIMENTION_COUNT)
+	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
+
+		for (uint i = 0; i < OTHER_DIMENTION_COUNT; i++) {
+			this->data[i] = other[i];
+		}
+
+		for (uint i = OTHER_DIMENTION_COUNT - 1; i < nDim; i++) {
+			this->data[i] = T{}; // reset to the type's default value (usually 0)
+		}
+		return SELF;
+	}
+
+	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
+	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
+
+		for (uint i = 0; i < nDim; i++) {
+			this->data[i] = other[i];
+		}
+		return SELF;
+	}
+
+	// == operator
+
+	OTHER_TYPE_TEMPLATE
+		constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
 		for (uint i = 0; i < OTHER_DIMENTION_COUNT; i++) {
 			this->data[i] = other[i];
 		}
@@ -207,15 +246,31 @@ public:
 
 	// non-commutative operators
 
-	OTHER_TYPE_TEMPLATE
+	// Vector - Vector
+
+	OTHER_TYPE_TEMPLATE requires(nDim >= OTHER_DIMENTION_COUNT)
 	friend constexpr const THIS_TYPE operator - (const THIS_TYPE& first, const OTHER_TYPE& other) {
 		return THIS_TYPE(first) -= other;
 	}
 
-	OTHER_TYPE_TEMPLATE
+	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
+	friend constexpr const OTHER_TYPE operator - (const THIS_TYPE& first, const OTHER_TYPE& other) {
+		return OTHER_TYPE(first) -= other;
+	}
+
+	// Vector / Vector
+
+	OTHER_TYPE_TEMPLATE requires(nDim >= OTHER_DIMENTION_COUNT)
+	friend constexpr const OTHER_TYPE operator / (const THIS_TYPE& first, const OTHER_TYPE& other) {
+		return OTHER_TYPE(first) /= other;
+	}
+
+	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
 	friend constexpr const THIS_TYPE operator / (const THIS_TYPE& first, const OTHER_TYPE& other) {
 		return THIS_TYPE(first) /= other;
 	}
+
+	// Vector / number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
 	friend constexpr const THIS_TYPE operator / (const THIS_TYPE& first, const OTHER_ARITHMETIC_TYPE& value) {
@@ -227,7 +282,7 @@ public:
 	// For both addiction and multiplication, 
 	// the return value ensures the most data is preserved by checking if nDim or OTHER_DIMENTION_COUNT is larger
 
-	// +
+	// Vector + Vector
 
 	OTHER_TYPE_TEMPLATE requires (nDim >= OTHER_DIMENTION_COUNT)
 	friend constexpr const THIS_TYPE operator + (const THIS_TYPE& first, const OTHER_TYPE& other) {
@@ -239,7 +294,7 @@ public:
 		return OTHER_TYPE(other) += first;
 	}
 
-	// *
+	// Vector * Vector
 
 	OTHER_TYPE_TEMPLATE requires (nDim >= OTHER_DIMENTION_COUNT)
 	friend constexpr const THIS_TYPE operator * (const THIS_TYPE& first, const OTHER_TYPE& other) {
@@ -250,6 +305,8 @@ public:
 	friend constexpr const OTHER_TYPE operator * (const THIS_TYPE& first, const OTHER_TYPE& other) {
 		return OTHER_TYPE(other) *= first;
 	}
+
+	// Vector * number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
 	friend constexpr const THIS_TYPE operator * (const THIS_TYPE& vector, const OTHER_ARITHMETIC_TYPE& value) {
@@ -264,6 +321,9 @@ public:
 		return return_vector;
 	}
 
+	/// <summary>
+	/// Returns the distance of the vector squared.
+	/// </summary>
 	constexpr const T SquaredMagnitude() const {
 
 		T return_value = 0;
@@ -273,6 +333,9 @@ public:
 		return return_value;
 	}
 
+	/// <summary>
+	/// Returns the distance of the vector.
+	/// </summary>
 	constexpr const T Magnitude() const {
 
 		if (sizeof(T) >= sizeof(long double))
@@ -286,6 +349,33 @@ public:
 	}
 	
 	inline constexpr THIS_TYPE& Normalise() {
+
+		// This block lowers bit-repression errors by, 
+		// for example, turning a vector such as (23405, 2414500455027440, 59769032) 
+		// into (0.00023405, 24145004.5502744, 0.59769032) before normalizing it.
+		// This would give the same normalized vector as without moving the decimal place, 
+		// but in the following algorithm will give a more accurate result.
+
+#define UPPER_BOUND 10000000.0f
+#define LOWER_BOUND 0.00000001f
+
+		T largest_mag = -1;
+		T lowest_mag  = 1.7976931348623157E308;
+		for (int i = 0; i < nDim; i++) {
+			if (std::abs(data[i]) < lowest_mag)
+				lowest_mag = data[i];
+			else if (std::abs(data[i]) > largest_mag)
+				largest_mag = data[i];
+		}
+
+		if (largest_mag > UPPER_BOUND)
+			SELF *= LOWER_BOUND;
+		else if (lowest_mag < LOWER_BOUND)
+			SELF *= UPPER_BOUND;
+
+#undef UPPER_BOUND
+#undef LOWER_BOUND
+
 		T inv_magnitude = static_cast<T>(FastInvSqrt(SquaredMagnitude()));
 		for (uint i = 0; i < nDim; i++) {
 			data[i] *= inv_magnitude;
@@ -307,8 +397,11 @@ public:
 		return return_vector;
 	}
 
-	template <typename OTHER_ARITHMETIC_TYPE, typename OTHER_MEMORY_STRUCTURE>
-	inline constexpr T Dot(const _VectorT<OTHER_ARITHMETIC_TYPE, nDim, OTHER_MEMORY_STRUCTURE>& rhs) {
+	/// <summary>
+	/// Returns the dot product of the current vector with another vector of the same number of dimensions.
+	/// </summary>
+	OTHER_TYPE_TEMPLATE requires(nDim == OTHER_DIMENTION_COUNT)
+	inline constexpr const T Dot(const OTHER_TYPE& rhs) const {
 		T return_value = T(0);
 
 		for (uint i = 0; i < nDim; i++) {
@@ -325,12 +418,20 @@ public:
 		temp.data.fill(static_cast<T>(value));
 		return temp;
 	}
-
-#undef THIS_TYPE
-#undef OTHER_TYPE_TEMPLATE
-#undef OTHER_TYPE
-
 };
+
+/// <summary>
+/// Returns the dot product of the current vector with another vector of the same number of dimensions.
+/// </summary>
+THIS_AND_OTHER_TYPE_TEMPLATE requires(nDim == OTHER_DIMENTION_COUNT)
+static constexpr const T Dot(const THIS_TYPE& lhs, const OTHER_TYPE& rhs) {
+	T return_value = T(0);
+
+	for (uint i = 0; i < nDim; i++) {
+		return_value += lhs[i] * rhs[i];
+	}
+	return return_value;
+}
 
 inline constexpr const _VectorT<int,1> Left  {-1};
 inline constexpr const _VectorT<int,1> Right { 1};
@@ -349,5 +450,18 @@ static constexpr const _VectorT<int,nDim> Zero = _VectorT<int,nDim>::Fill(0);
 
 template<uint nDim>
 static constexpr const _VectorT<int,nDim> One = _VectorT<int,nDim>::Fill(1);
+
+#undef THIS_TYPE
+
+#undef OTHER_DIMENTION_COUNT
+#undef OTHER_MEMORY_STRUCTURE
+
+#undef OTHER_TYPE
+#undef OTHER_TYPE_TEMPLATE
+
+#undef OTHER_ARITHMETIC_TYPE
+#undef OTHER_ARITHMETIC_TYPE_TEMPLATE
+
+#undef THIS_AND_OTHER_TYPE_TEMPLATE
 
 } // namespace Vectors

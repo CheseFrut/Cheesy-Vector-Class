@@ -42,6 +42,12 @@
     <ClCompile Include="Vector4.cpp">
       <Filter>Source Files\Structs</Filter>
     </ClCompile>
+    <ClCompile Include="src\FastInvSqrt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Vector.h">
