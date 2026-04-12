@@ -3,7 +3,7 @@ c++ library for game-engine vector calculations
 
 This library provides a templated vector class of arbitrary length and type. 
 
-It has been used to make a Vector2, Vector3, and Vector4 float type, along with Integer, Short, and Double variants.
+It has been used to make a Vector2, Vector3, and Vector4 type, along with integer, short, and double variants of each.
 
 ```cpp
 {
