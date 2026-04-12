@@ -10,7 +10,8 @@ It has been used to make a Vector2, Vector3, and Vector4 type, along with intege
     Vector3 foo(1, 2, 3); // floating point 3D Vector
     Vector2I bar(3, 4); // integer 2D Vector
 
-    foo.x = bar.y; // 4
+    foo.x = bar.y; // foo = (4,2,3)
+    foo += bar; // foo = (7,6,3)
 }
 ```
 The base class also gives the user freedom to, for example, union the first value with `x`.
@@ -54,6 +55,7 @@ int main() {
 (2, 4, 6)
 (0.5, 1, 1.5)
 ```
+Check out the Vector3.h file to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
 ---
 TODO: Show vector2 + Vector4 and some explicit conversions in the README
