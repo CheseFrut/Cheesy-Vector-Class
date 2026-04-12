@@ -1,7 +1,4 @@
-﻿  Vector2.cpp
-  Vector3.cpp
-  Vector4.cpp
-  main.cpp
+﻿  main.cpp
 C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244: 'argument': conversion from 'T' to 'const T', possible loss of data
 C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         with
 C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         [
@@ -13,69 +10,62 @@ C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17):
 C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         ]
   (compiling source file 'main.cpp')
       C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,20):
-      while evaluating constexpr function 'Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic'
+      while evaluating constexpr function 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic'
           with
           [
               T=float
           ]
       C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17):
       the template instantiation context (the oldest one first) is
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,10):
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(49,10):
           see reference to class template instantiation '_Vector3T<float>' being compiled
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\Vector3.h(30,57):
-          see reference to function template instantiation 'Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::_VectorT<int,int>(T,int,int)' being compiled
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\Vector3.h(30,39):
+          see reference to function template instantiation 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::_VectorT<int,int>(T,int,int)' being compiled
           with
           [
               T=float
           ]
           C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,3):
-          see reference to function template instantiation 'void Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic<T&,int&,int&>(T &,int &,int &)' being compiled
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic<T&,int&,int&>(T &,int &,int &)' being compiled
           with
           [
               T=float
           ]
           C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(43,3):
-          see reference to function template instantiation 'void Vector::_VectorT<T,3,Vector::DEFAULT_MEMORY_STRUCTURE<T,3>>::set_from_variadic_indexer<0,1,2,T&,int&,int&>(std::integer_sequence<size_t,0,1,2>,T &,int &,int &)' being compiled
+          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic_indexer<0,1,2,T&,int&,int&>(std::integer_sequence<size_t,0,1,2>,T &,int &,int &)' being compiled
           with
           [
               T=float
           ]
   
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244: 'argument': conversion from 'double' to 'const T', possible loss of data
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         with
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         [
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:             T=float
-C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17): warning C4244:         ]
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244: '*=': conversion from 'const T1' to '_Ty', possible loss of data
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         with
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:             T1=double
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         ]
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         and
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         [
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:             _Ty=float
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21): warning C4244:         ]
   (compiling source file 'main.cpp')
-      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(38,17):
+      C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(194,21):
       the template instantiation context (the oldest one first) is
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,24):
-          see reference to function template instantiation '_Vector3T<float>::_Vector3T<double,float>(T,double,float)' being compiled
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(67,24):
+          see reference to function template instantiation 'const Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> Vector::operator *<double>(const Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> &,const T1 &)' being compiled
           with
           [
-              T=float
+              T=float,
+              T1=double
           ]
-              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(11,24):
-              see the first reference to '_Vector3T<float>::_Vector3T' in 'main'
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(25,1):
-          see reference to function template instantiation 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::_VectorT<double,float>(T,double,float)' being compiled
+              C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\main.cpp(67,17):
+              see the first reference to 'Vector::operator *' in 'main'
+          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(256,28):
+          see reference to function template instantiation 'Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>> &Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::operator *=<T1>(const T1 &)' being compiled
           with
           [
-              T=float
-          ]
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(79,3):
-          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic<T&,double&,float&>(T &,double &,float &)' being compiled
-          with
-          [
-              T=float
-          ]
-          C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\includes\Vector.h(43,3):
-          see reference to function template instantiation 'void Vector::_VectorT<T,3,_VEC3_MEM_STRUCT<T>>::set_from_variadic_indexer<0,1,2,T&,double&,T&>(std::integer_sequence<size_t,0,1,2>,T &,double &,T &)' being compiled
-          with
-          [
-              T=float
+              T=float,
+              T1=double
           ]
   
-  Vector.cpp
-  Generating Code...
-  General Vector Class.vcxproj -> C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\Builds\Win32\Debug\General Vector Class.exe
+main.obj : error LNK2019: unresolved external symbol "float __cdecl FastInvSqrt(float,unsigned int)" (?FastInvSqrt@@YAMMI@Z) referenced in function "public: struct Vector::_VectorT<float,3,struct _VEC3_MEM_STRUCT<float> > & __thiscall Vector::_VectorT<float,3,struct _VEC3_MEM_STRUCT<float> >::Normalise(void)" (?Normalise@?$_VectorT@M$02U?$_VEC3_MEM_STRUCT@M@@@Vector@@QAEAAU12@XZ)
+C:\Users\Dre\Documents\GitHub\General-Vector-Class-CPP\\Builds\Win32\Debug\General Vector Class.exe : fatal error LNK1120: 1 unresolved externals

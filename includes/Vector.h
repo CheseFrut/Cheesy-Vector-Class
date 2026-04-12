@@ -18,7 +18,7 @@ namespace Vector {
 		std::array<T, nDim> data { };
 	};
 
-template <typename T = double, uint nDim = 3, class MEMORY_STRUCTURE = DEFAULT_MEMORY_STRUCTURE<T, nDim>> 
+template <typename T, uint nDim, class MEMORY_STRUCTURE = DEFAULT_MEMORY_STRUCTURE<T, nDim>> 
 struct _VectorT : public MEMORY_STRUCTURE {
 
 private:
@@ -307,8 +307,8 @@ public:
 		return return_vector;
 	}
 
-	template <typename OTHER_ARITHMETIC_TYPE>
-	inline constexpr T Dot(const _VectorT<OTHER_ARITHMETIC_TYPE, nDim>& rhs) {
+	template <typename OTHER_ARITHMETIC_TYPE, typename OTHER_MEMORY_STRUCTURE>
+	inline constexpr T Dot(const _VectorT<OTHER_ARITHMETIC_TYPE, nDim, OTHER_MEMORY_STRUCTURE>& rhs) {
 		T return_value = T(0);
 
 		for (uint i = 0; i < nDim; i++) {

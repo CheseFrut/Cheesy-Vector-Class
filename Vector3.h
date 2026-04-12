@@ -27,17 +27,17 @@ struct _Vector3T : public THIS_TYPE {
 		}
 	}
 
-	static constexpr const Vector::_VectorT<T, N_DIMS> Left{ -1, 0, 0 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Right{ 1, 0, 0 };
+	static constexpr const THIS_TYPE Left{ -1, 0, 0 };
+	static constexpr const THIS_TYPE Right{ 1, 0, 0 };
 
-	static constexpr const Vector::_VectorT<T, N_DIMS> Up{ 0,  1, 0 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Down{ 0, -1, 0 };
+	static constexpr const THIS_TYPE Up{ 0,  1, 0 };
+	static constexpr const THIS_TYPE Down{ 0, -1, 0 };
 
-	static constexpr const Vector::_VectorT<T, N_DIMS> Back{ 0, 0, -1 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Forward{ 0, 0,  1 };
+	static constexpr const THIS_TYPE Back{ 0, 0, -1 };
+	static constexpr const THIS_TYPE Forward{ 0, 0,  1 };
 
-	static constexpr const Vector::_VectorT<T, N_DIMS> One = Vector::_VectorT<T, N_DIMS>::Fill(1);
-	static constexpr const Vector::_VectorT<T, N_DIMS> Zero = Vector::_VectorT<T, N_DIMS>::Fill(0);
+	static constexpr const THIS_TYPE One = THIS_TYPE::Fill(1);
+	static constexpr const THIS_TYPE Zero = THIS_TYPE::Fill(0);
 };
 
 #undef THIS_TYPE
