@@ -30,14 +30,18 @@ struct _Vector2T : public THIS_TYPE {
 	}
 
 	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS >= nDim1)
-		explicit _Vector2T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) : _VectorT() {
+	explicit _Vector2T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
 		for (uint i = 0; i < nDim1; i++) {
 			SELF[i] = other[i];
+		}
+
+		for (uint i = nDim1; i < N_DIMS; i++) {
+			SELF[i] = T{};
 		}
 	}
 
 	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS < nDim1)
-		explicit _Vector2T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
+	explicit _Vector2T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
 		for (uint i = 0; i < N_DIMS; i++) {
 			SELF[i] = other[i];
 		}

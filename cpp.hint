@@ -5,6 +5,8 @@
 #define uint
 #define ushort
 
+#define N_DIMS
+
 #define SELF
 
 #define THIS_TYPE
