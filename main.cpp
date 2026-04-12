@@ -16,10 +16,9 @@ int main(int argc, char** argv) {
 	PerformUnitTest(test + Vector3(1), { 2, 1, 1 });
 	PerformUnitTest(test + Vector2(1.0f, 1), { 2, 2, 1 });
 
-	PerformUnitTest(test * Vector4::Fill(-2.0f), { -2, -2, -2, -2 });
-	PerformUnitTest(Vector4::Fill(-2.0) * test, { -2, -2, -2, -2 });
+	PerformUnitTest(test * -2, { -2, -2, -2 });
+	PerformUnitTest(-2 * test, { -2, -2, -2 });
 
-	PerformUnitTest(test / (Vector4::One * 2), { 0.5, 0.5, 0.5 });
 	PerformUnitTest(test / 2, { 0.5, 0.5, 0.5 });
 
 	PerformUnitTest((Vector2)test, { 1, 1 });
@@ -51,6 +50,8 @@ int main(int argc, char** argv) {
 	PerformUnitTest(Vector::Up == Vector3(1, 1, 1), 0);
 
 	EndUnitTests();
+
+
 	
 	return 0;
 }

@@ -122,6 +122,8 @@ public:
 		return data.at(idx);
 	}
 
+	// ----- operators ----- //
+
 	T& operator [] (const uint idx) {
 		return at(idx);
 	}
@@ -153,7 +155,7 @@ public:
 
 	// = operator
 
-	OTHER_TYPE_TEMPLATE requires(nDim == OTHER_DIMENTION_COUNT)
+	OTHER_TYPE_TEMPLATE requires(nDim <= OTHER_DIMENTION_COUNT)
 	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
 
 		for (uint i = 0; i < nDim; i++) {
@@ -175,32 +177,9 @@ public:
 		return SELF;
 	}
 
-	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
-	constexpr THIS_TYPE& operator = (const OTHER_TYPE& other) {
+	// - arithmetic operators - //
 
-		for (uint i = 0; i < nDim; i++) {
-			this->data[i] = other[i];
-		}
-		return SELF;
-	}
-
-	// arithmetic operators
-
-	OTHER_TYPE_TEMPLATE
-	constexpr THIS_TYPE& operator *= (const OTHER_TYPE& other) {
-		for (uint i = 0; i < std::min(nDim, OTHER_DIMENTION_COUNT); i++) {
-			this->data[i] *= other[i];
-		}
-		return SELF;
-	}
-
-	OTHER_TYPE_TEMPLATE
-	constexpr THIS_TYPE& operator /= (const OTHER_TYPE& other) {
-		for (uint i = 0; i < std::min(nDim, OTHER_DIMENTION_COUNT); i++) {
-			this->data[i] /= other[i];
-		}
-		return SELF;
-	}
+	// Vector += Vector
 
 	OTHER_TYPE_TEMPLATE
 	constexpr THIS_TYPE& operator += (const OTHER_TYPE& other) {
@@ -210,6 +189,8 @@ public:
 		return SELF;
 	}
 
+	// Vector -= Vector
+
 	OTHER_TYPE_TEMPLATE
 	constexpr THIS_TYPE& operator -= (const OTHER_TYPE& other) {
 		for (uint i = 0; i < std::min(nDim, OTHER_DIMENTION_COUNT); i++) {
@@ -217,6 +198,8 @@ public:
 		}
 		return SELF;
 	}
+
+	// Vector *= number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
 	constexpr THIS_TYPE& operator *= (const OTHER_ARITHMETIC_TYPE& value) {
@@ -226,6 +209,8 @@ public:
 		}
 		return SELF;
 	}
+	
+	// Vector /= number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
 	constexpr THIS_TYPE& operator /= (const OTHER_ARITHMETIC_TYPE& value) {
@@ -236,7 +221,7 @@ public:
 		return SELF;
 	}
 
-	// non-commutative operators
+	// non-commutative operators //
 
 	// Vector - Vector
 
@@ -250,18 +235,6 @@ public:
 		return OTHER_TYPE(first) -= other;
 	}
 
-	// Vector / Vector
-
-	OTHER_TYPE_TEMPLATE requires(nDim >= OTHER_DIMENTION_COUNT)
-	friend constexpr const OTHER_TYPE operator / (const THIS_TYPE& first, const OTHER_TYPE& other) {
-		return OTHER_TYPE(first) /= other;
-	}
-
-	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
-	friend constexpr const THIS_TYPE operator / (const THIS_TYPE& first, const OTHER_TYPE& other) {
-		return THIS_TYPE(first) /= other;
-	}
-
 	// Vector / number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
@@ -269,7 +242,7 @@ public:
 		return THIS_TYPE(first) /= value;
 	}
 
-	// commutative operators
+	// commutative operators //
 
 	// For both addiction and multiplication, 
 	// the return value ensures the most data is preserved by checking if nDim or OTHER_DIMENTION_COUNT is larger
@@ -286,22 +259,15 @@ public:
 		return OTHER_TYPE(other) += first;
 	}
 
-	// Vector * Vector
-
-	OTHER_TYPE_TEMPLATE requires (nDim >= OTHER_DIMENTION_COUNT)
-	friend constexpr const THIS_TYPE operator * (const THIS_TYPE& first, const OTHER_TYPE& other) {
-		return THIS_TYPE(first) *= other;
-	}
-
-	OTHER_TYPE_TEMPLATE requires (nDim < OTHER_DIMENTION_COUNT)
-	friend constexpr const OTHER_TYPE operator * (const THIS_TYPE& first, const OTHER_TYPE& other) {
-		return OTHER_TYPE(other) *= first;
-	}
-
 	// Vector * number
 
 	OTHER_ARITHMETIC_TYPE_TEMPLATE
 	friend constexpr const THIS_TYPE operator * (const THIS_TYPE& vector, const OTHER_ARITHMETIC_TYPE& value) {
+		return THIS_TYPE(vector) *= value;
+	}
+
+	OTHER_ARITHMETIC_TYPE_TEMPLATE
+	friend constexpr const THIS_TYPE operator * (const OTHER_ARITHMETIC_TYPE& value, const THIS_TYPE& vector) {
 		return THIS_TYPE(vector) *= value;
 	}
 
@@ -326,6 +292,23 @@ public:
 		// ensure the extra dimensions of the first vector are filled with default values (0)
 		for (uint i = OTHER_DIMENTION_COUNT; i < nDim; i++) {
 			if (first[i] != T{}) 
+				return false;
+		}
+
+		return true;
+	}
+
+	OTHER_TYPE_TEMPLATE requires (nDim < OTHER_DIMENTION_COUNT)
+	friend constexpr const bool operator == (const THIS_TYPE& first, const OTHER_TYPE& other) {
+		
+		for (uint i = 0; i < nDim; i++) {
+			if (first[i] != other[i]) return false;
+		}
+
+		// if the first vector is larger than the other, 
+		// ensure the extra dimensions of the first vector are filled with default values (0)
+		for (uint i = nDim; i < OTHER_DIMENTION_COUNT; i++) {
+			if (other[i] != T{})
 				return false;
 		}
 
