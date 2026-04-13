@@ -20,8 +20,6 @@ There is also a **`Colour`** and **`ColourRGB`** type.
 |   4   | **`Colour`**    |
 |   3   | **`ColourRGB`** |
 
-These types convert to the base class to perform Vector operations, but are implicitly converted back.
-
 Any of these types listed above can be arbitrarily converted to each other, if not implicitly then explicitly.
 
 ## Examples
