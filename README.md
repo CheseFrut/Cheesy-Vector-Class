@@ -36,7 +36,7 @@ int main() {
 }
 ```
 
-### Inbuilt Constants
+### Inbuilt Vector Constants
 Each Vector type has a direction constant in each cardinal direction. Each Vector type also has 
 ```cpp
 int main() {
