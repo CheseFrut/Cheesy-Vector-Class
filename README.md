@@ -36,14 +36,27 @@ int main() {
 }
 ```
 
+### Inbuilt Constants
+Each Vector type has a direction constant in each cardinal direction. Each Vector type also has 
+```cpp
+int main() {
+    Vector2I foo = Vector2I::Left;  // foo = Vector2I(-1,0)
+    foo = Vector2I::Up;  // foo = Vector2I(0,1)
+    foo = Vector2I::Zero;  // foo = Vector2I(0,0)
+
+    Vector4  bar = Vector4::Kata;  // bar = Vector4(0,0,0,-1)
+    bar = Vector4::One;  // bar = Vector4(1,1,1,1)
+}
+```
+
 ### Implicit Conversions
 When performing arithmetic operations, conversions are done implicitly.
 ```cpp
 int main() {
-    Colour foo = Vector3(0,0,1);  // foo = Colour(0, 0, 1, 0)
-    ColourRGB bar(0.1, 1, 0);     // bar = ColourRGB(0.1, 1, 0)
+    Colour foo = Vector3::One * 2;  // foo = Colour(2, 2, 2, 0)
+    ColourRGB bar(0.1, 1, 0);  // bar = ColourRGB(0.1, 1, 0)
 
-    foo += bar; // foo = Colour(0.1, 1, 1, 0)
+    foo -= bar; // foo = Colour(1.9, 1, 2, 0)
 }
 ```
 
@@ -87,7 +100,9 @@ int main() {
 (2, 4, 6)
 (0.5, 1, 1.5)
 ```
+
 Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
 ## TODO
 - [ ] If for example **`Vector2D`** is added to **`Vector4I`**, make the return type **`Vector4D`** to preserve aas much data as possible.
+- [ ] Make **`Colour`** and **`ColourRGB`** types their own derived classes from the base class (they are currently just renamed **`Vector4`** and **`Vector3`** types), and replace **`Colour::Zero`** and **`Colour::One`** with **`Colour::Black`** and **`Colour::White`** respectively.
