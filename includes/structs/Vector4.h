@@ -72,5 +72,6 @@ struct _Vector4T : public THIS_TYPE {
 
 typedef _Vector4T <double> Vector4D;
 typedef _Vector4T <float> Vector4;
+typedef _Vector4T <long> Vector4L;
 typedef _Vector4T <int> Vector4I;
 typedef _Vector4T <short> Vector4S;
