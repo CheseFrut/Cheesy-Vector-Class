@@ -3,41 +3,62 @@ c++ library for game-engine vector calculations
 
 This library provides a templated base vector class of arbitrary length and data type. 
 
-It has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type, along with `int`, `double`, `short` and `long` variants of each. 
+## Included Types
+
+The base class has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type, along with `int`, `double`, `short` and `long` variants of each. 
 
 |  dim  | `float`        | `double`       | `int`          | `long`         | `short`        |
 | :---: | -------------- | -------------- | -------------- | -------------- | -------------- | 
-|   2   | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
-|   3   | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
-|   4   | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
+|   2   | **`Vector2`**  | **`Vector2D`** | **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
+|   3   | **`Vector3`**  | **`Vector3D`** | **`Vector3I`** | **`Vector3L`** | **`Vector3S`** |
+|   4   | **`Vector4`**  | **`Vector4D`** | **`Vector4I`** | **`Vector4L`** | **`Vector4S`** |
+
+There is also a **`Colour`** and **`ColourRGB`** type.
 
 |  dim  | type            |
 | :---: | :-------------- |
 |   4   | **`Colour`**    |
 |   3   | **`ColourRGB`** |
 
+These types convert to the base class to perform Vector operations, but are implicitly converted back.
+
+Any of these types listed above can be arbitrarily converted to each other, if not implicitly then explicitly.
+
+## Examples
+### Memory Structure
+The base class gives the user freedom to `union` elements in its data array with other tokens. The **`Vector3`** type stores it's data with the type `std::array<float, 3> data` and is unioned with `struct { float x, y, z }`.
 ```cpp
 int main() {
-    Vector3 foo(1, 2, 3); // floating point 3D Vector
-    Vector2I bar(3, 4); // integer 2D Vector
-
-    foo.x = bar.y; // foo = (4,2,3)
-    foo += bar; // foo = (7,6,3)
-}
-```
-The base class also gives the user freedom to, for example, union the first value with `x`.
-
-The base class was also used to make a **`Colour`** and **`ColourRGB`** type (with 4 and 3 dimentions respectively).
-```cpp
-int main() {
-    Colour foo = Vector::Forward; // Vector(0,0,1)
-    ColourRGB bar = Colour(0.1, 1, 0);
-
-    foo += bar; // foo = Colour(0.1,1,1,0)
+    Vector3 foo;          // foo = Vector3(0,0,0)
+    Vector3.x = 1;        // foo = Vector3(1,0,0)
+    Vector3.data[0] = 2;  // foo = Vector3(2,0,0)
+    Vector3[0] = 3;       // foo = Vector3(3,0,0)
 }
 ```
 
+### Implicit Conversions
+When performing arithmetic operations, conversions are done implicitly.
+```cpp
+int main() {
+    Colour foo = Vector3(0,0,1);  // foo = Colour(0, 0, 1, 0)
+    ColourRGB bar(0.1, 1, 0);     // bar = ColourRGB(0.1, 1, 0)
+
+    foo += bar; // foo = Colour(0.1, 1, 1, 0)
+}
+```
+
+### Explicit Conversions
 Each of these types can also be explicitly converted to each other.
+```cpp
+int main() {
+    Vector3 foo(1, 2, 3);
+    Vector2 bar(3, 4);
+    bar = (Vector2)foo; // bar = Vector2(1,2)
+}
+```
+
+> [!CAUTION]
+> You can add or subtract any vector type from any other, and the return type will always be the one with the largest dimentions. At the moment this leads to **IMPLICIT** data loss, as the operation **`Vector2`**` + `**`Vector4I`** will return as a **`Vector4I`** type, which shruncates the data of the **`Vector2`**.
 
 ## Vector3 Examples
 ```cpp
@@ -68,7 +89,5 @@ int main() {
 ```
 Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
----
-<sub> 
-**TODO:** Show vector2 + Vector4 and some explicit conversions in the README 
-</sub>
+## TODO
+- [ ] If for example **`Vector2D`** is added to **`Vector4I`**, make the return type **`Vector4D`** to preserve aas much data as possible.
