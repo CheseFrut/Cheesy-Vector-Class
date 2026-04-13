@@ -65,5 +65,6 @@ struct _Vector2T : public THIS_TYPE {
 
 typedef _Vector2T <double> Vector2D;
 typedef _Vector2T <float> Vector2;
+typedef _Vector2T <long> Vector2L;
 typedef _Vector2T <int> Vector2I;
 typedef _Vector2T <short> Vector2S;
