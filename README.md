@@ -5,16 +5,16 @@ This library provides a templated base vector class of arbitrary length and data
 
 It has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type, along with `int`, `double`, `short` and `long` variants of each. These types are shown below
 
-|         | `float`        | `double`       | `int`          | `long`         | `short`        |
-| ------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 2D      | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
-| 3D      | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
-| 4D      | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
+| dimentions | `float`        | `double`       | `int`          | `long`         | `short`        |
+| --------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 2D        | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
+| 3D        | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
+| 4D        | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
 
-| Number of <br>dimentions    | type   |
-| --- | --------- |
-| 4   | Colour    |
-| 3   | ColourRGB |
+| dimentions | type      |
+| ---------- | --------- |
+| 4          | Colour    |
+| 3          | ColourRGB |
 
 ```cpp
 int main() {
