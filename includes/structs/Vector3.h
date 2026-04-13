@@ -82,5 +82,6 @@ struct _Vector3T : public THIS_TYPE {
 
 typedef _Vector3T <double> Vector3D;
 typedef _Vector3T <float> Vector3;
+typedef _Vector3T <long> Vector3L;
 typedef _Vector3T <int> Vector3I;
 typedef _Vector3T <short> Vector3S;
