@@ -1,7 +1,7 @@
 # General Purpose Vectors
 c++ library for game-engine vector calculations
 
-This library provides a templated base vector class of arbitrary length and data type. 
+This library provides a templated base vector class of arbitrary length and data type, and some derived types.
 
 ## Included Types
 
