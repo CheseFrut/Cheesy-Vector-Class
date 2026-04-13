@@ -7,9 +7,9 @@ It has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type,
 
 | dimentions | `float`        | `double`       | `int`          | `long`         | `short`        |
 | --------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 2D        | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
-| 3D        | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
-| 4D        | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
+| 2         | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
+| 3         | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
+| 4         | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
 
 | dimentions | type      |
 | ---------- | --------- |
