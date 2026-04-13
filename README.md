@@ -5,11 +5,11 @@ This library provides a templated base vector class of arbitrary length and data
 
 It has been used to make a **`Vector2`**, **`Vector3`**, and **`Vector4`** type, along with `int`, `short`, and `double` variants of each.
 
-|         | `float`        | `double`       | `long`         | `int`          | `short`        |
+|         | `float`        | `double`       | `int`          | `long`         | `short`        |
 | ------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 2D      | **`Vector2`**  | **`Vector2D`** |  **`Vector2L`** | **`Vector2I`** | **`Vector2S`** |
-| 3D      | **`Vector3`**  | **`Vector3D`** |   **`Vector3L`** |**`Vector3I`** | **`Vector3S`** |
-| 4D      | **`Vector4`**  | **`Vector4D`** |   **`Vector4L`** |**`Vector4I`** | **`Vector4S`** |
+| 2D      | **`Vector2`**  | **`Vector2D`** |  **`Vector2I`** | **`Vector2L`** | **`Vector2S`** |
+| 3D      | **`Vector3`**  | **`Vector3D`** |   **`Vector3I`** |**`Vector3L`** | **`Vector3S`** |
+| 4D      | **`Vector4`**  | **`Vector4D`** |   **`Vector4I`** |**`Vector4L`** | **`Vector4S`** |
 
 ```cpp
 int main() {
