@@ -1,8 +1,6 @@
 #pragma once
-#include "Vector.h"
 
-#define uint unsigned int
-#define SELF (*this)
+#include "Vector.h"
 
 // --- Cariable defines for convinience --- //
 
@@ -20,8 +18,8 @@
 // This is a _VectorT type with the same number of dimentions and the same arithmetic type as THIS_TYPE,
 // but with a variable memory structure:
 
-#define VECTOR_TYPE_TEMPLATE template <typename MEMORY_STRUCTURE>
-#define VECTOR_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, MEMORY_STRUCTURE>
+#define VECTOR_TYPE_TEMPLATE template <typename T1, typename MEMORY_STRUCTURE1>
+#define VECTOR_TYPE Vector::_VectorT<T1, N_DIMS, MEMORY_STRUCTURE1>
 
 // --- Colour type --- //
 
@@ -44,26 +42,39 @@ struct Colour : public THIS_TYPE {
 
 	VECTOR_TYPE_TEMPLATE
 		Colour(VECTOR_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (size_t i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static Colour Hex8(const uint& hex) {
+	VECTOR_TYPE_TEMPLATE
+		constexpr Colour& operator *= (const VECTOR_TYPE& other) {
+		for (size_t i = 0; i < N_DIMS; i++)
+			(*this)[i] *= other[i];
+		return (*this);
+	}
+
+	VECTOR_TYPE_TEMPLATE
+		friend const constexpr Colour operator * (const Colour& first, const VECTOR_TYPE& other) {
+		return Colour(first) *= other;
+
+	}
+
+	static Colour Hex8(const size_t& hex) {
 
 		const float div255 = 1.0 / 255.0;
 
 		Colour result;
 
-		const uint r_mask = 0xff000000;
-		const uint g_mask = 0x00ff0000;
-		const uint b_mask = 0x0000ff00;
-		const uint a_mask = 0x000000ff;
+		const size_t r_mask = 0xff000000;
+		const size_t g_mask = 0x00ff0000;
+		const size_t b_mask = 0x0000ff00;
+		const size_t a_mask = 0x000000ff;
 
-		uint masked_r = hex & r_mask;
-		uint masked_g = hex & g_mask;
-		uint masked_b = hex & b_mask;
-		uint masked_a = hex & a_mask;
+		size_t masked_r = hex & r_mask;
+		size_t masked_g = hex & g_mask;
+		size_t masked_b = hex & b_mask;
+		size_t masked_a = hex & a_mask;
 
 		result.r = float(masked_r >> 24) * div255;
 		result.g = float(masked_g >> 16) * div255;
@@ -95,24 +106,37 @@ struct Colour255 : public THIS_TYPE {
 
 	VECTOR_TYPE_TEMPLATE
 		Colour255(VECTOR_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (size_t i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static Colour255 Hex8(const uint& hex) {
+	VECTOR_TYPE_TEMPLATE
+		constexpr Colour255& operator *= (const VECTOR_TYPE& other) {
+		for (size_t i = 0; i < N_DIMS; i++)
+			(*this)[i] *= other[i];
+		return (*this);
+	}
+
+	VECTOR_TYPE_TEMPLATE
+		friend const constexpr Colour255 operator * (const Colour255& first, const VECTOR_TYPE& other) {
+		return Colour255(first) *= other;
+
+	}
+
+	static Colour255 Hex8(const size_t& hex) {
 
 		Colour255 result;
 
-		const uint r_mask = 0xff000000;
-		const uint g_mask = 0x00ff0000;
-		const uint b_mask = 0x0000ff00;
-		const uint a_mask = 0x000000ff;
+		const size_t r_mask = 0xff000000;
+		const size_t g_mask = 0x00ff0000;
+		const size_t b_mask = 0x0000ff00;
+		const size_t a_mask = 0x000000ff;
 
-		uint masked_r = hex & r_mask;
-		uint masked_g = hex & g_mask;
-		uint masked_b = hex & b_mask;
-		uint masked_a = hex & a_mask;
+		size_t masked_r = hex & r_mask;
+		size_t masked_g = hex & g_mask;
+		size_t masked_b = hex & b_mask;
+		size_t masked_a = hex & a_mask;
 
 		result.r = uint8_t(masked_r >> 24);
 		result.g = uint8_t(masked_g >> 16);
@@ -155,24 +179,37 @@ struct ColourRGB : public THIS_TYPE {
 
 	VECTOR_TYPE_TEMPLATE
 		ColourRGB(VECTOR_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (size_t i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static constexpr ColourRGB Hex6(const uint& hex) {
+	VECTOR_TYPE_TEMPLATE
+		constexpr ColourRGB& operator *= (const VECTOR_TYPE& other) {
+		for (size_t i = 0; i < N_DIMS; i++)
+			(*this)[i] *= other[i];
+		return (*this);
+	}
+
+	VECTOR_TYPE_TEMPLATE
+		friend const constexpr ColourRGB operator * (const ColourRGB& first, const VECTOR_TYPE& other) {
+		return ColourRGB(first) *= other;
+
+	}
+
+	static constexpr const ColourRGB Hex6(const size_t& hex) {
 
 		const float div255 = 1.0 / 255.0;
 
 		ColourRGB result;
 
-		const uint r_mask = 0xff0000;
-		const uint g_mask = 0x00ff00;
-		const uint b_mask = 0x0000ff;
+		const size_t r_mask = 0xff0000;
+		const size_t g_mask = 0x00ff00;
+		const size_t b_mask = 0x0000ff;
 
-		uint masked_r = hex & r_mask;
-		uint masked_g = hex & g_mask;
-		uint masked_b = hex & b_mask;
+		size_t masked_r = hex & r_mask;
+		size_t masked_g = hex & g_mask;
+		size_t masked_b = hex & b_mask;
 
 		result.r = float(masked_r >> 16) * div255;
 		result.g = float(masked_g >> 8) * div255;
@@ -201,22 +238,35 @@ struct ColourRGB255 : public THIS_TYPE {
 
 	VECTOR_TYPE_TEMPLATE
 		ColourRGB255(VECTOR_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (size_t i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static constexpr ColourRGB255 Hex6(const uint& hex) {
+	VECTOR_TYPE_TEMPLATE
+		constexpr ColourRGB255& operator *= (const VECTOR_TYPE& other) {
+		for (size_t i = 0; i < N_DIMS; i++)
+			(*this)[i] *= other[i];
+		return (*this);
+	}
+
+	VECTOR_TYPE_TEMPLATE
+		friend const constexpr ColourRGB255 operator * (const ColourRGB255& first, const VECTOR_TYPE& other) {
+		return ColourRGB255(first) *= other;
+
+	}
+
+	static constexpr ColourRGB255 Hex6(const size_t& hex) {
 
 		ColourRGB255 result;
 
-		const uint r_mask = 0xff0000;
-		const uint g_mask = 0x00ff00;
-		const uint b_mask = 0x0000ff;
+		const size_t r_mask = 0xff0000;
+		const size_t g_mask = 0x00ff00;
+		const size_t b_mask = 0x0000ff;
 
-		uint masked_r = hex & r_mask;
-		uint masked_g = hex & g_mask;
-		uint masked_b = hex & b_mask;
+		size_t masked_r = hex & r_mask;
+		size_t masked_g = hex & g_mask;
+		size_t masked_b = hex & b_mask;
 
 		result.r = uint8_t(masked_r >> 16);
 		result.g = uint8_t(masked_g >> 8);
@@ -241,6 +291,3 @@ struct ColourRGB255 : public THIS_TYPE {
 
 #undef VECTOR_TYPE
 #undef VECTOR_TYPE_TEMPLATE
-
-#undef uint
-#undef SELF

@@ -154,7 +154,7 @@ constexpr static void PERFORM_VECTOR_TESTS() {
 
 	// Colours
 
-	PerformUnitTest(ColourRGB::Cross((ColourRGB)Vector::Up, ColourRGB::White), { 1, 0, -1 });
+	PerformUnitTest(ColourRGB::Hex6(0xffff00) * (ColourRGB)Vector::Up, { 0, 1, 0 });
 
 	EndUnitTests();
 }

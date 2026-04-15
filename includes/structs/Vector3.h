@@ -1,8 +1,6 @@
 #pragma once
-#include "Vector.h"
 
-#define uint unsigned int
-#define SELF (*this)
+#include "Vector.h"
 
 #define N_DIMS 3
 
@@ -23,22 +21,22 @@ struct _Vector3T : public THIS_TYPE {
 	using THIS_TYPE::_VectorT;
 
 	constexpr _Vector3T(THIS_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (size_t i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static constexpr const THIS_TYPE Left{ -1, 0, 0 };
-	static constexpr const THIS_TYPE Right{ 1, 0, 0 };
+	static const _Vector3T Left;
+	static const _Vector3T Right;
 
-	static constexpr const THIS_TYPE Up{ 0,  1, 0 };
-	static constexpr const THIS_TYPE Down{ 0, -1, 0 };
+	static const _Vector3T Up;
+	static const _Vector3T Down;
 
-	static constexpr const THIS_TYPE Back{ 0, 0, -1 };
-	static constexpr const THIS_TYPE Forward{ 0, 0,  1 };
+	static const _Vector3T Back;
+	static const _Vector3T Forward;
 
-	static constexpr const THIS_TYPE One = THIS_TYPE::Fill(1);
-	static constexpr const THIS_TYPE Zero = THIS_TYPE::Fill(0);
+	static const _Vector3T One;
+	static const _Vector3T Zero;
 
 	/// <summary>
 	/// Returns the cross product of the LHS and RHS vectors.
@@ -54,11 +52,17 @@ struct _Vector3T : public THIS_TYPE {
 	}
 };
 
+template<typename T> const _Vector3T<T> _Vector3T<T>::Left(-1, 0, 0);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Right(1, 0, 0);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Up(0, 1, 0);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Down(0, -1, 0);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Back(0, 0, -1);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Forward(0, 0, 1);
+template<typename T> const _Vector3T<T> _Vector3T<T>::One(1, 1, 1);
+template<typename T> const _Vector3T<T> _Vector3T<T>::Zero(0, 0, 0);
+
 #undef THIS_TYPE
 #undef N_DIMS
-
-#undef uint
-#undef SELF
 
 typedef _Vector3T <double> Vector3D;
 typedef _Vector3T <float> Vector3;
