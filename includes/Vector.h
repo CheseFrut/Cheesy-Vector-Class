@@ -169,6 +169,32 @@ public:
 		return ostream;
 	}
 
+	// arbitrary explicit conversions between vector types
+
+	OTHER_TYPE_TEMPLATE requires(nDim >= OTHER_DIMENTION_COUNT)
+		constexpr operator OTHER_TYPE () const {
+		OTHER_TYPE return_vector;
+		for (uint i = 0; i < nDim; i++) {
+			return_vector[i] = SELF.data[i];
+		}
+
+		for (uint i = OTHER_DIMENTION_COUNT; i < nDim; i++) {
+			return_vector[i] = T{};
+		}
+
+		return return_vector;
+	}
+
+	OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
+		constexpr explicit operator OTHER_TYPE () const {
+		OTHER_TYPE return_vector;
+		for (uint i = 0; i < nDim; i++) {
+			return_vector[i] = SELF.data[i];
+		}
+		
+		return return_vector;
+	}
+
 	// = operator
 
 	OTHER_TYPE_TEMPLATE requires(nDim <= OTHER_DIMENTION_COUNT)

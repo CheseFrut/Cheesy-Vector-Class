@@ -20,29 +20,9 @@ struct _VEC3_MEM_STRUCT {
 template<typename T>
 struct _Vector3T : public THIS_TYPE {
 
-	using type = THIS_TYPE;
+	using THIS_TYPE::_VectorT;
 
-	using type::_VectorT;
-
-	_Vector3T(THIS_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
-		}
-	}
-
-	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS >= nDim1)
-	explicit _Vector3T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
-		for (uint i = 0; i < nDim1; i++) {
-			SELF[i] = other[i];
-		}
-
-		for (uint i = nDim1; i < N_DIMS; i++) {
-			SELF[i] = T{};
-		}
-	}
-
-	template <typename T1, uint nDim1, typename MEMORY_STRUCTURE1> requires(N_DIMS < nDim1)
-	explicit _Vector3T(const Vector::_VectorT<T1, nDim1, MEMORY_STRUCTURE1>& other) {
+	constexpr _Vector3T(THIS_TYPE other) {
 		for (uint i = 0; i < N_DIMS; i++) {
 			SELF[i] = other[i];
 		}

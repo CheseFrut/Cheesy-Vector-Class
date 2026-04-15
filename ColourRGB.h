@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include "Vector.h"
 
 #define uint unsigned int
@@ -74,11 +72,65 @@ struct _Colour3T : public THIS_TYPE {
 	}
 };
 
+
+
+#define THIS_TYPE _Colour3T<float>
+
+struct ColourRGB : public THIS_TYPE {
+
+	using THIS_TYPE::_Colour3T;
+
+	static constexpr ColourRGB HEX6(const uint& hex) {
+
+		const double div255 = 1.0 / 255.0;
+
+		ColourRGB result;
+
+		const uint r_mask = 0xff0000;
+		const uint g_mask = 0x00ff00;
+		const uint b_mask = 0x0000ff;
+
+		uint masked_r = hex & r_mask;
+		uint masked_g = hex & g_mask;
+		uint masked_b = hex & b_mask;
+
+		result.r = float((double)(masked_r >> 16) * div255);
+		result.g = float((double)(masked_g >> 8) * div255);
+		result.b = float((double)(masked_b) * div255);
+
+		return result;
+
+	}
+};
+
+#define THIS_TYPE _Colour3T<uint8_t>
+
+struct ColourRGB255 : public THIS_TYPE {
+
+	using THIS_TYPE::_Colour3T;
+
+	static constexpr ColourRGB255 HEX6(const uint& hex) {
+
+		ColourRGB255 result;
+
+		const uint r_mask = 0xff0000;
+		const uint g_mask = 0x00ff00;
+		const uint b_mask = 0x0000ff;
+
+		uint masked_r = hex & r_mask;
+		uint masked_g = hex & g_mask;
+		uint masked_b = hex & b_mask;
+
+		result.r = uint8_t(masked_r >> 16);
+		result.g = uint8_t(masked_g >> 8);
+		result.b = uint8_t(masked_b);
+
+		return result;
+	}
+};
+
 #undef THIS_TYPE
 #undef N_DIMS
 
 #undef uint
 #undef SELF
-
-typedef _Colour3T <float> ColourRGB;
-typedef _Colour3T <uint8_t> ColourRGB255;
