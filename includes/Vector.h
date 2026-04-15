@@ -1,6 +1,5 @@
 #pragma once
 
-#include "FastInvSqrt.h"
 #include <array>
 #include <cmath>
 #include <cstdarg>
@@ -11,17 +10,34 @@
 #define uint unsigned int
 #define SELF (*this)
 
+
+// Helper function 1/sqrt(x)
+
+inline constexpr float FastInvSqrt(float x, unsigned int iteration_count = 1) {
+
+	float xhalf = 0.5f * x;
+	int i = *(int*)&x;              // get bits for floating value
+	i = 0x5f375a86 - (i >> 1);      // gives initial guess y0
+	x = *(float*)&i;                // convert bits back to float
+
+	while (iteration_count--)
+		x = x * (1.5f - xhalf * x * x); // Newton approximation equation for 1/sqrt(x)
+
+	return x;
+}
+
+// -------- Namespace Vector -------- //
+
 namespace Vector {
 
-	// The memory structure allows you to for example make a vector3 structure that unions the data array with struct { T x, y, z; }
-	// Any custom memory structure requires a member data of type std::array<T, nDim>
+	// Any custom memory structure requires this member: 
+	//	std::array<T, nDim> data
+	// The memory structure allows you to for example make a vector3 structure that unions data with: struct { T x, y, z; }
 
 	template<typename T, uint nDim>
-	struct DEFAULT_MEMORY_STRUCTURE {
-		std::array<T, nDim> data { };
-	};
+	struct DEFAULT_MEMORY_STRUCTURE { std::array<T, nDim> data { }; };
 
-	// Defines for readability
+	// -- Defines for readability -- //
 
 #define THIS_TYPE _VectorT<T, nDim, MEMORY_STRUCTURE>
 
@@ -37,7 +53,7 @@ namespace Vector {
 
 #define OTHER_ARITHMETIC_TYPE_TEMPLATE template <typename T1> requires (std::is_arithmetic<T1>::value)
 
-	// The Vector struct
+	// -- The Vector struct -- //
 
 template <typename T, uint nDim, class MEMORY_STRUCTURE = DEFAULT_MEMORY_STRUCTURE<T, nDim>> 
 struct _VectorT : public MEMORY_STRUCTURE {
@@ -98,15 +114,15 @@ public:
 		set_from_variadic(first, args...);
 	}
 
-	// Converts to a vector with more or an equal number of dimensions. 
+	// Implicitly onverts to a vector with more or an equal number of dimensions:
 	OTHER_TYPE_TEMPLATE requires (OTHER_DIMENTION_COUNT <= nDim)
-	explicit constexpr _VectorT(const OTHER_TYPE& other) : _VectorT() {
+	constexpr _VectorT(const OTHER_TYPE& other) : _VectorT() {
 		for (uint i = 0; i < OTHER_DIMENTION_COUNT; i++) {
 			data[i] = static_cast<T>(other[i]);
 		}
 	}
 
-	// Converts to a vector with less dimensions. This is explicit to avoid implicit loss of data.
+	// Converts to a vector with less dimensions:
 	OTHER_TYPE_TEMPLATE requires (OTHER_DIMENTION_COUNT > nDim)
 	explicit constexpr _VectorT(const OTHER_TYPE& other) : _VectorT() {
 		for (uint i = 0; i < nDim; i++) {
@@ -397,6 +413,7 @@ public:
 			if (return_vector.data[i] < T(0))
 				return_vector.data[i] = -return_vector.data[i];
 		}
+
 		return return_vector;
 	}
 
@@ -410,6 +427,7 @@ public:
 		for (uint i = 0; i < nDim; i++) {
 			return_value += data[i] * rhs[i];
 		}
+
 		return return_value;
 	}
 
@@ -427,13 +445,8 @@ public:
 /// Returns the dot product of the current vector with another vector of the same number of dimensions.
 /// </summary>
 THIS_AND_OTHER_TYPE_TEMPLATE requires(nDim == OTHER_DIMENTION_COUNT)
-static constexpr const T Dot(const THIS_TYPE& lhs, const OTHER_TYPE& rhs) {
-	T return_value = T(0);
-
-	for (uint i = 0; i < nDim; i++) {
-		return_value += lhs[i] * rhs[i];
-	}
-	return return_value;
+static inline constexpr const T Dot(const THIS_TYPE& lhs, const OTHER_TYPE& rhs) {
+	return lhs.Dot(rhs);
 }
 
 inline constexpr const _VectorT<int,1> Left  {-1};
@@ -467,7 +480,7 @@ static constexpr const _VectorT<int,nDim> One = _VectorT<int,nDim>::Fill(1);
 
 #undef THIS_AND_OTHER_TYPE_TEMPLATE
 
-} // namespace Vectors
+} // namespace Vector
 
 #undef uint
 #undef SELF

@@ -139,10 +139,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\FastInvSqrt.cpp" />
-    <ClCompile Include="src\structs\Vector2.cpp" />
-    <ClCompile Include="src\structs\Vector3.cpp" />
-    <ClCompile Include="src\structs\Vector4.cpp" />
-    <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>

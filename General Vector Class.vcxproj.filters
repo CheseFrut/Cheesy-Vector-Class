@@ -13,23 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\namespace">
-      <UniqueIdentifier>{67b1df1c-3ece-4be5-9de2-10cb1329b1ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\namespace">
       <UniqueIdentifier>{dd9c0c13-023d-4db8-bc35-6b968531c8d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Structs">
       <UniqueIdentifier>{0e9b19a7-40b7-40be-8980-9ba731df4282}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Structs">
-      <UniqueIdentifier>{563c41b3-dc56-497d-a1aa-38179a4a8f47}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Vector.cpp">
-      <Filter>Source Files\namespace</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,15 +29,6 @@
     </ClCompile>
     <ClCompile Include="UnitTests.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\structs\Vector2.cpp">
-      <Filter>Source Files\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\structs\Vector3.cpp">
-      <Filter>Source Files\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\structs\Vector4.cpp">
-      <Filter>Source Files\Structs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
