@@ -24,9 +24,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\FastInvSqrt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,9 +31,6 @@
   <ItemGroup>
     <ClInclude Include="includes\Vector.h">
       <Filter>Header Files\namespace</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\FastInvSqrt.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\structs\Colour.h">
       <Filter>Header Files\Structs</Filter>
@@ -48,6 +42,9 @@
       <Filter>Header Files\Structs</Filter>
     </ClInclude>
     <ClInclude Include="includes\structs\Vector4.h">
+      <Filter>Header Files\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="ColourRGB.h">
       <Filter>Header Files\Structs</Filter>
     </ClInclude>
   </ItemGroup>

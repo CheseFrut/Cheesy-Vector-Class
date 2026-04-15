@@ -138,11 +138,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\FastInvSqrt.cpp" />
     <ClCompile Include="UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\FastInvSqrt.h" />
+    <ClInclude Include="ColourRGB.h" />
     <ClInclude Include="includes\structs\Colour.h" />
     <ClInclude Include="includes\structs\Vector2.h" />
     <ClInclude Include="includes\structs\Vector3.h" />

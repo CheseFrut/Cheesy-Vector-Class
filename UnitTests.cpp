@@ -99,6 +99,7 @@ constexpr static void EndUnitTests() {
 #undef SELF
 
 #include "Colour.h"
+#include "ColourRGB.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
@@ -151,6 +152,11 @@ constexpr static void PERFORM_VECTOR_TESTS() {
 
 	PerformUnitTest(Vector3(0, 1, 0) == Vector::Up, 1);
 	PerformUnitTest(Vector::Up == Vector3(1, 1, 1), 0);
+
+	// Colours
+
+	PerformUnitTest(ColourRGB::Cross((ColourRGB)Vector::Up, ColourRGB::White), { 1, 0, -1 });
+
 
 	EndUnitTests();
 }
