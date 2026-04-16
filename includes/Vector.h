@@ -60,7 +60,7 @@ namespace Vector {
 
 		// Variadic constructor helpers
 
-		constexpr void set_at(size_t idx, const T& value) {
+		constexpr void set_at(const size_t idx, const T value) {
 			this->data[idx] = value;
 		}
 
@@ -108,7 +108,7 @@ namespace Vector {
 		template<typename... Args> requires ( // Variadic constructor is used if:
 			(sizeof...(Args) + 1 <= nDim) &&		// - number of args is less than or equal to number of stated dimensions.
 			(std::conjunction_v<std::is_convertible<Args, T>...>)) // - if all of the given parameters are convertible to a numeric type.
-			explicit constexpr _VectorT(T first, Args... args) : _VectorT() {
+			explicit constexpr _VectorT(const T first, const Args... args) : _VectorT() {
 			set_from_variadic(first, args...);
 		}
 
