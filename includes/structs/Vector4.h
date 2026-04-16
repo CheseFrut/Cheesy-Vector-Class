@@ -1,8 +1,6 @@
 #pragma once
-#include "Vector.h"
 
-#define uint unsigned int
-#define SELF (*this)
+#include "Vector.h"
 
 #define N_DIMS 4
 
@@ -23,32 +21,36 @@ struct _Vector4T : public THIS_TYPE {
 	using THIS_TYPE::_VectorT;
 
 	constexpr _Vector4T(THIS_TYPE other) {
-		for (uint i = 0; i < N_DIMS; i++) {
-			SELF[i] = other[i];
+		for (unsigned int i = 0; i < N_DIMS; i++) {
+			(*this)[i] = other[i];
 		}
 	}
 
-	static constexpr const Vector::_VectorT<T, N_DIMS> Left{ -1, 0, 0, 0 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Right{ 1, 0, 0, 0 };
-
-	static constexpr const Vector::_VectorT<T, N_DIMS> Up{ 0,  1, 0, 0 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Down{ 0, -1, 0, 0 };
-
-	static constexpr const Vector::_VectorT<T, N_DIMS> Back{ 0, 0, -1 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Forward{ 0, 0,  1 };
-
-	static constexpr const Vector::_VectorT<T, N_DIMS> Ana{ 0, 0, 0,  1 };
-	static constexpr const Vector::_VectorT<T, N_DIMS> Kata{ 0, 0, 0, -1 };
-
-	static constexpr const Vector::_VectorT<T, N_DIMS> One = Vector::_VectorT<T, N_DIMS>::Fill(1);
-	static constexpr const Vector::_VectorT<T, N_DIMS> Zero = Vector::_VectorT<T,N_DIMS>::Fill(0);
+	static const _Vector4T Left;
+	static const _Vector4T Right;
+	static const _Vector4T Up;
+	static const _Vector4T Down;
+	static const _Vector4T Back;
+	static const _Vector4T Forward;
+	static const _Vector4T Ana;
+	static const _Vector4T Kata;
+	static const _Vector4T One;
+	static const _Vector4T Zero;
 };
+
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Left		(-1,  0,  0,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Right		( 1,  0,  0,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Up			( 0,  1,  0,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Down		( 0, -1,  0,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Back		( 0,  0, -1,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Forward	( 0,  0,  1,  0);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Ana		( 0,  0,  0,  1);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Kata		( 0,  0,  0, -1);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::One		( 1,  1,  1,  1);
+template<typename T> inline const _Vector4T<T> _Vector4T<T>::Zero		( 0,  0,  0,  0);
 
 #undef THIS_TYPE
 #undef N_DIMS
-
-#undef uint
-#undef SELF
 
 typedef _Vector4T <double> Vector4D;
 typedef _Vector4T <float> Vector4;

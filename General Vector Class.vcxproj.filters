@@ -44,9 +44,6 @@
     <ClInclude Include="includes\structs\Vector4.h">
       <Filter>Header Files\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="ColourRGB.h">
-      <Filter>Header Files\Structs</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint">

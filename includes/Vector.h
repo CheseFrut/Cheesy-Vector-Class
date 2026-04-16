@@ -112,7 +112,7 @@ namespace Vector {
 			set_from_variadic(first, args...);
 		}
 
-		// Implicitly onverts to a vector with more or an equal number of dimensions:
+		// Implicitly converts to a vector with more or an equal number of dimensions:
 		OTHER_TYPE_TEMPLATE requires (OTHER_DIMENTION_COUNT <= nDim)
 			constexpr _VectorT(const OTHER_TYPE& other) : _VectorT() {
 			for (size_t i = 0; i < OTHER_DIMENTION_COUNT; i++) {
@@ -473,17 +473,14 @@ namespace Vector {
 		return lhs.Dot(rhs);
 	}
 
-	inline constexpr const _VectorT<int, 1> Left{ -1 };
-	inline constexpr const _VectorT<int, 1> Right{ 1 };
-
-	inline constexpr const _VectorT<int, 2> Up{ 0,  1 };
-	inline constexpr const _VectorT<int, 2> Down{ 0, -1 };
-
-	inline constexpr const _VectorT<int, 3> Back{ 0, 0, -1 };
-	inline constexpr const _VectorT<int, 3> Forward{ 0, 0,  1 };
-
-	inline constexpr const _VectorT<int, 4> Ana{ 0, 0, 0,  1 };
-	inline constexpr const _VectorT<int, 4> Kata{ 0, 0, 0, -1 };
+	inline constexpr const _VectorT<int, 1> Left				( -1 );
+	inline constexpr const _VectorT<int, 1> Right				(  1 );
+	inline constexpr const _VectorT<int, 2> Up				(  0,  1 );
+	inline constexpr const _VectorT<int, 2> Down			(  0, -1 );
+	inline constexpr const _VectorT<int, 3> Back		(  0,  0, -1 );
+	inline constexpr const _VectorT<int, 3> Forward		(  0,  0,  1 );
+	inline constexpr const _VectorT<int, 4> Ana		(  0,  0,  0,  1 );
+	inline constexpr const _VectorT<int, 4> Kata	(  0,  0,  0, -1 );
 
 	template<size_t nDim>
 	static constexpr const _VectorT<int, nDim> Zero = _VectorT<int, nDim>::Fill(0);

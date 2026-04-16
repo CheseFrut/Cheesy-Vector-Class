@@ -10,21 +10,25 @@
 
 #define N_DIMS
 #define THIS_ARITHMETIC_TYPE
-#define THIS_MEMORY_STRUCTURE
-#define THIS_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, THIS_MEMORY_STRUCTURE<THIS_ARITHMETIC_TYPE>>
+#define THIS_TYPE
 
 // - VECTOR_TYPE - //
 	
 // This is a _VectorT type with the same number of dimentions and the same arithmetic type as THIS_TYPE,
 // but with a variable memory structure:
 
-#define VECTOR_TYPE_TEMPLATE template <typename T1, typename MEMORY_STRUCTURE1>
-#define VECTOR_TYPE Vector::_VectorT<T1, N_DIMS, MEMORY_STRUCTURE1>
+#define VECTOR_TYPE_TEMPLATE
+#define VECTOR_TYPE
 
 // --- Colour type --- //
 
+#undef N_DIMS
+#undef VECTOR_TYPE_TEMPLATE
+#undef VECTOR_TYPE
+
 #define N_DIMS 4
-#define THIS_MEMORY_STRUCTURE _COLOUR4_MEM_STRUCT
+#define VECTOR_TYPE_TEMPLATE template <typename T1, typename MEMORY_STRUCTURE1>
+#define VECTOR_TYPE Vector::_VectorT<T1, N_DIMS, MEMORY_STRUCTURE1>
 
 template<typename T>
 struct _COLOUR4_MEM_STRUCT {
@@ -34,7 +38,11 @@ struct _COLOUR4_MEM_STRUCT {
 	};
 };
 
+#undef THIS_ARITHMETIC_TYPE
+#undef THIS_TYPE
+
 #define THIS_ARITHMETIC_TYPE float
+#define THIS_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, _COLOUR4_MEM_STRUCT<THIS_ARITHMETIC_TYPE>>
 
 struct Colour : public THIS_TYPE {
 
@@ -62,7 +70,7 @@ struct Colour : public THIS_TYPE {
 
 	static Colour Hex8(const size_t& hex) {
 
-		const float div255 = 1.0 / 255.0;
+		const float div255 = 1.0f / 255.0f;
 
 		Colour result;
 
@@ -85,20 +93,32 @@ struct Colour : public THIS_TYPE {
 		
 	}
 
-	static constexpr const THIS_TYPE Red{ 1, 0, 0, 1 };
-	static constexpr const THIS_TYPE Green{ 0, 1, 0, 1 };
-	static constexpr const THIS_TYPE Blue{ 0, 0, 1, 1 };
-
-	static constexpr const THIS_TYPE Yellow{ 1, 1, 0, 1 };
-	static constexpr const THIS_TYPE Cyan{ 0, 1, 1, 1 };
-	static constexpr const THIS_TYPE Magenta{ 1, 0, 1, 1 };
-
-	static constexpr const THIS_TYPE White{ 1, 1, 1, 1 };
-	static constexpr const THIS_TYPE Black{ 0, 0, 0, 1 };
-	static constexpr const THIS_TYPE Null, Empty{ 0, 0, 0, 0 };
+	static const Colour Red;
+	static const Colour Green;
+	static const Colour Blue;
+	static const Colour Yellow;
+	static const Colour Cyan;
+	static const Colour Magenta;
+	static const Colour White;
+	static const Colour Black;
+	static const Colour Null, Empty;
 };
 
+inline const Colour Colour::Red			( 1, 0, 0, 1 );
+inline const Colour Colour::Green		( 0, 1, 0, 1 );
+inline const Colour Colour::Blue		( 0, 0, 1, 1 );
+inline const Colour Colour::Yellow		( 1, 1, 0, 1 );
+inline const Colour Colour::Cyan		( 0, 1, 1, 1 );
+inline const Colour Colour::Magenta		( 1, 0, 1, 1 );
+inline const Colour Colour::White		( 1, 1, 1, 1 );
+inline const Colour Colour::Black		( 0, 0, 0, 1 );
+inline const Colour Colour::Null, Colour::Empty ( 0, 0, 0, 0 );
+
+#undef THIS_ARITHMETIC_TYPE
+#undef THIS_TYPE
+
 #define THIS_ARITHMETIC_TYPE uint8_t
+#define THIS_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, _COLOUR4_MEM_STRUCT<THIS_ARITHMETIC_TYPE>>
 
 struct Colour255 : public THIS_TYPE {
 
@@ -146,22 +166,40 @@ struct Colour255 : public THIS_TYPE {
 		return result;
 	}
 
-	static constexpr const THIS_TYPE Red	{ 255,   0,   0, 255 };
-	static constexpr const THIS_TYPE Green	{   0, 255,   0, 255 };
-	static constexpr const THIS_TYPE Blue	{   0,   0, 255, 255 };
-	static constexpr const THIS_TYPE Yellow	{ 255, 255,   0, 255 };
-	static constexpr const THIS_TYPE Cyan	{   0, 255, 255, 255 };
-	static constexpr const THIS_TYPE Magenta{ 255,   0, 255, 255 };
-	static constexpr const THIS_TYPE White	{ 255, 255, 255, 255 };
-	static constexpr const THIS_TYPE Black	{   0,   0,   0, 255 };
-
-	static constexpr const THIS_TYPE Null, Empty { 0, 0, 0, 0 };
+	static const Colour255 Red;
+	static const Colour255 Green;
+	static const Colour255 Blue;
+	static const Colour255 Yellow;
+	static const Colour255 Cyan;
+	static const Colour255 Magenta;
+	static const Colour255 White;
+	static const Colour255 Black;
+	static const Colour255 Null, Empty;
 };
+
+inline const Colour255 Colour255::Red		( 255,   0,   0, 255 );
+inline const Colour255 Colour255::Green		(   0, 255,   0, 255 );
+inline const Colour255 Colour255::Blue		(   0,   0, 255, 255 );
+inline const Colour255 Colour255::Yellow	( 255, 255,   0, 255 );
+inline const Colour255 Colour255::Cyan		(   0, 255, 255, 255 );
+inline const Colour255 Colour255::Magenta	( 255,   0, 255, 255 );
+inline const Colour255 Colour255::White		( 255, 255, 255, 255 );
+inline const Colour255 Colour255::Black		(   0,   0,   0, 255 );
+inline const Colour255 Colour255::Null,Colour255::Empty ( 0, 0, 0, 0 );
+
+#undef N_DIMS
+#undef VECTOR_TYPE
+
+#undef THIS_ARITHMETIC_TYPE
+#undef THIS_TYPE
+
+#undef VECTOR_TYPE_TEMPLATE
 
 // --- ColourRGB type --- //
 
 #define N_DIMS 3
-#define THIS_MEMORY_STRUCTURE _COLOUR3_MEM_STRUCT
+#define VECTOR_TYPE Vector::_VectorT<T1, N_DIMS, MEMORY_STRUCTURE1>
+#define VECTOR_TYPE_TEMPLATE template <typename T1, typename MEMORY_STRUCTURE1>
 
 template<typename T>
 struct _COLOUR3_MEM_STRUCT {
@@ -172,6 +210,7 @@ struct _COLOUR3_MEM_STRUCT {
 };
 
 #define THIS_ARITHMETIC_TYPE float
+#define THIS_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, _COLOUR3_MEM_STRUCT<THIS_ARITHMETIC_TYPE>>
 
 struct ColourRGB : public THIS_TYPE {
 
@@ -194,12 +233,11 @@ struct ColourRGB : public THIS_TYPE {
 	VECTOR_TYPE_TEMPLATE
 		friend const constexpr ColourRGB operator * (const ColourRGB& first, const VECTOR_TYPE& other) {
 		return ColourRGB(first) *= other;
-
 	}
 
 	static constexpr const ColourRGB Hex6(const size_t& hex) {
 
-		const float div255 = 1.0 / 255.0;
+		const float div255 = 1.0f / 255.0f;
 
 		ColourRGB result;
 
@@ -219,18 +257,30 @@ struct ColourRGB : public THIS_TYPE {
 
 	}
 
-	static constexpr const THIS_TYPE Red	{ 1, 0, 0 };
-	static constexpr const THIS_TYPE Green	{ 0, 1, 0 };
-	static constexpr const THIS_TYPE Blue	{ 0, 0, 1 };
-	static constexpr const THIS_TYPE Yellow	{ 1, 1, 0 };
-	static constexpr const THIS_TYPE Cyan	{ 0, 1, 1 };
-	static constexpr const THIS_TYPE Magenta{ 1, 0, 1 };
-	static constexpr const THIS_TYPE White	{ 1, 1, 1 };
-
-	static constexpr const THIS_TYPE Black,Null,Empty { 0, 0, 0 };
+	static const ColourRGB Red;
+	static const ColourRGB Green;
+	static const ColourRGB Blue;
+	static const ColourRGB Yellow;
+	static const ColourRGB Cyan;
+	static const ColourRGB Magenta;
+	static const ColourRGB White;
+	static const ColourRGB Black, Null, Empty;
 };
 
+inline const ColourRGB ColourRGB::Red		( 1, 0, 0 );
+inline const ColourRGB ColourRGB::Green		( 0, 1, 0 );
+inline const ColourRGB ColourRGB::Blue		( 0, 0, 1 );
+inline const ColourRGB ColourRGB::Yellow	( 1, 1, 0 );
+inline const ColourRGB ColourRGB::Cyan		( 0, 1, 1 );
+inline const ColourRGB ColourRGB::Magenta	( 1, 0, 1 );
+inline const ColourRGB ColourRGB::White		( 1, 1, 1 );
+inline const ColourRGB ColourRGB::Black,ColourRGB::Null,ColourRGB::Empty ( 0, 0, 0 );
+
+#undef THIS_ARITHMETIC_TYPE
+#undef THIS_TYPE
+
 #define THIS_ARITHMETIC_TYPE uint8_t
+#define THIS_TYPE Vector::_VectorT<THIS_ARITHMETIC_TYPE, N_DIMS, _COLOUR3_MEM_STRUCT<THIS_ARITHMETIC_TYPE>>
 
 struct ColourRGB255 : public THIS_TYPE {
 
@@ -275,19 +325,29 @@ struct ColourRGB255 : public THIS_TYPE {
 		return result;
 	}
 
-	static constexpr const THIS_TYPE Red		{ 255,   0,   0 };
-	static constexpr const THIS_TYPE Green		{   0, 255,   0 };
-	static constexpr const THIS_TYPE Blue		{   0,   0, 255 };
-	static constexpr const THIS_TYPE Yellow		{ 255, 255,   0 };
-	static constexpr const THIS_TYPE Cyan		{   0, 255, 255 };
-	static constexpr const THIS_TYPE Magenta	{ 255,   0, 255 };
-	static constexpr const THIS_TYPE White		{ 255, 255, 255 };
-
-	static constexpr const THIS_TYPE Black,Null,Empty { 0, 0, 0 };
+	static const ColourRGB255 Red;
+	static const ColourRGB255 Green;
+	static const ColourRGB255 Blue;
+	static const ColourRGB255 Yellow;
+	static const ColourRGB255 Cyan;
+	static const ColourRGB255 Magenta;
+	static const ColourRGB255 White;
+	static const ColourRGB255 Black,Null,Empty;
 };
-#undef N_DIMS
-#undef THIS_TYPE
-#undef THIS_MEMORY_STRUCTURE
 
+inline const ColourRGB255 ColourRGB255::Red			( 255,   0,   0 );
+inline const ColourRGB255 ColourRGB255::Green		(   0, 255,   0 );
+inline const ColourRGB255 ColourRGB255::Blue		(   0,   0, 255 );
+inline const ColourRGB255 ColourRGB255::Yellow		( 255, 255,   0 );
+inline const ColourRGB255 ColourRGB255::Cyan		(   0, 255, 255 );
+inline const ColourRGB255 ColourRGB255::Magenta		( 255,   0, 255 );
+inline const ColourRGB255 ColourRGB255::White		( 255, 255, 255 );
+inline const ColourRGB255 ColourRGB255::Black,ColourRGB255::Null,ColourRGB255::Empty ( 0, 0, 0 );
+
+#undef N_DIMS
 #undef VECTOR_TYPE
+
+#undef THIS_ARITHMETIC_TYPE
+#undef THIS_TYPE
+
 #undef VECTOR_TYPE_TEMPLATE

@@ -1,14 +1,14 @@
-
-#include "Vector.h"
 #include <initializer_list>
 #include <iostream>
 #include <string>
 
-#define uint unsigned int
-#define SELF (*this)
+#include "Colour.h"
+#include "Vector2.h"
+#include "Vector3.h"
+#include "Vector4.h"
 
-static uint current_unit_test_number;
-static uint total_failures;
+static unsigned int current_unit_test_number;
+static unsigned int total_failures;
 static bool unit_tests_active;
 static bool showing_successful_tests;
 
@@ -20,7 +20,7 @@ constexpr static void StartUnitTests(bool show_successful_tests = true) {
 	showing_successful_tests = show_successful_tests;
 }
 
-template <typename T, uint nDim, typename MEMORY_STRUCTURE, typename T1> requires (std::is_arithmetic<T1>::value)
+template <typename T, unsigned int nDim, typename MEMORY_STRUCTURE, typename T1> requires (std::is_arithmetic<T1>::value)
 constexpr static void PerformUnitTest(const Vector::_VectorT<T, nDim, MEMORY_STRUCTURE>& input, const std::initializer_list<T1>& desired_result, double error_margin = 0) {
 	current_unit_test_number++;
 
@@ -33,7 +33,7 @@ constexpr static void PerformUnitTest(const Vector::_VectorT<T, nDim, MEMORY_STR
 
 	if (nDim != desired_result.size()) success = false;
 
-	for (uint i = 0; i < desired_result.size(); i++) {
+	for (unsigned int i = 0; i < desired_result.size(); i++) {
 		if (std::abs(input[i] - static_cast<T>(desired_result.begin()[i])) > error_margin) success = false;
 	}
 
@@ -43,7 +43,7 @@ constexpr static void PerformUnitTest(const Vector::_VectorT<T, nDim, MEMORY_STR
 	}
 	else {
 		std::cout << std::endl << current_unit_test_number << '\t' << "[X] : WANTED (";
-		for (uint i = 0; i < desired_result.size(); i++) {
+		for (unsigned int i = 0; i < desired_result.size(); i++) {
 			if (i != desired_result.size() - 1)
 				std::cout << std::to_string(desired_result.begin()[i]) << ", ";
 			else
@@ -95,13 +95,6 @@ constexpr static void EndUnitTests() {
 	unit_tests_active = false;
 }
 
-#undef uint
-#undef SELF
-
-#include "Colour.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
 
 
 // ------- Tests ------- //

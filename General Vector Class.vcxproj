@@ -141,7 +141,6 @@
     <ClCompile Include="UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColourRGB.h" />
     <ClInclude Include="includes\structs\Colour.h" />
     <ClInclude Include="includes\structs\Vector2.h" />
     <ClInclude Include="includes\structs\Vector3.h" />
