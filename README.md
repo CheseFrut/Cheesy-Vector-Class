@@ -116,7 +116,7 @@ Below is a table of the different Colour types.
 
 > [!WARNING]
 > **`Colour`** types do not yet automatically scale their values from `{0.0 -> 1.0}` to `{0 -> 255}` and vice versa when converting to and from **`Colour255`** types.
-> You will have to divide and multiply by `255` manually currently.
+> You will currently have to divide and multiply by `255` manually.
 
 ```cpp
 #include "Colour.h"
