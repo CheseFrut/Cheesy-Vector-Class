@@ -44,7 +44,7 @@ namespace Vector {
 
 #define OTHER_TYPE _VectorT<T1, nDim1, MEMORY_STRUCTURE1>
 
-#define COMBINED_TYPE _VectorT<std::common_type<T,T1>, std::max<unsigned int>(nDim,nDim1)>
+#define COMBINED_TYPE _VectorT<std::common_type_t<T,T1>, std::max<unsigned int>(nDim,nDim1)>
 
 #define OTHER_TYPE_TEMPLATE template<typename T1, size_t nDim1, typename MEMORY_STRUCTURE1>
 #define THIS_AND_OTHER_TYPE_TEMPLATE template<typename T, size_t nDim, typename MEMORY_STRUCTURE, typename T1, size_t nDim1, typename MEMORY_STRUCTURE1>
