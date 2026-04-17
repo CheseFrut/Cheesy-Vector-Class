@@ -68,8 +68,8 @@ int main() {
 }
 ```
 
-> [!CAUTION]
-> You can add or subtract any vector type from any other, and the return type will always be the one with the largest dimentions. At the moment this leads to **IMPLICIT** data loss, as the operation **`Vector2`**` + `**`Vector4I`** will return as a **`Vector4I`** type, which shruncates the data of the **`Vector2`**.
+> [!INFO]
+> You can add or subtract any vector type from any other, and the return type will have a combined type of both vectors' arithmetic types, and the highest number of dimentions between them.
 
 ## Vector3 Examples
 ```cpp
