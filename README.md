@@ -102,5 +102,5 @@ int main() {
 Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
 
 ## TODO
-- [ ] Use `std::common_type` to ensure safe conversions when performing arithmetic operations with Vectors of different arithmetic types.
+- [ ] Use `std::common_type`{:.cpp} to ensure safe conversions when performing arithmetic operations with Vectors of different arithmetic types.
 - [ ] Make **`Colour`** and **`ColourRGB`** types their own derived classes from the base class (they are currently just renamed **`Vector4`** and **`Vector3`** types), and replace **`Colour::Zero`** and **`Colour::One`** with **`Colour::Black`** and **`Colour::White`** respectively.
