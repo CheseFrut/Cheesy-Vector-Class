@@ -68,7 +68,7 @@ int main() {
 }
 ```
 
-> [!INFO]
+> [!NOTE]
 > You can add or subtract any vector type from any other, and the return type will have a combined type of both vectors' arithmetic types, and the highest number of dimentions between them.
 
 ## Vector3 Examples
