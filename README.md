@@ -13,12 +13,12 @@ The base class has been used to make a **`Vector2`**, **`Vector3`**, and **`Vect
 |   3   | **`Vector3`**  | **`Vector3D`** | **`Vector3I`** | **`Vector3L`** | **`Vector3S`** |
 |   4   | **`Vector4`**  | **`Vector4D`** | **`Vector4I`** | **`Vector4L`** | **`Vector4S`** |
 
-There is also a **`Colour`** and **`ColourRGB`** type.
+There is also a **`Colour`** and **`ColourRGB`** type, with 32bit and 8bit variants of each.
 
-|  dim  | type            |
-| :---: | :-------------- |
-|   4   | **`Colour`**    |
-|   3   | **`ColourRGB`** |
+|  dim  |     `float`      |     `uint8_t`      |
+| :---: | ---------------- | ------------------ |
+|   3   | **`ColourRGB`**  | **`ColourRGB255`** |
+|   4   |  **`Colour`**    |  **`Colour255`**   |
 
 Any of these types listed above can be arbitrarily converted to each other, if not implicitly then explicitly.
 
@@ -106,13 +106,6 @@ int main() {
 
 ## Colour Examples
 The colour types work the same the **`VectorN`** types, but you it can also be multiplied by any Vector type. It also has predefined colour constants.
-
-Below is a table of the different Colour types.
-
-|  dim  |     `float`      |     `uint8_t`      |
-| :---: | ---------------- | ------------------ |
-|   3   | **`ColourRGB`**  | **`ColourRGB255`** |
-|   4   |  **`Colour`**    |  **`Colour255`**   |
 
 > [!WARNING]
 > **`Colour`** types do not yet automatically scale their values from `{0.0 -> 1.0}` to `{0 -> 255}` and vice versa when converting to and from **`Colour255`** types.
