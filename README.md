@@ -69,7 +69,9 @@ int main() {
 ```
 
 > [!NOTE]
-> You can add or subtract any vector type from any other, and the return type will have a combined type of both vectors' arithmetic types, and the highest number of dimentions between them.
+> You can add or subtract any vector type from any other,
+> and the return type will have a combined type of both vectors' arithmetic types
+> and the highest number of dimentions between them.
 
 ## Vector3 Examples
 ```cpp
@@ -99,10 +101,22 @@ int main() {
 (0.5, 1, 1.5)
 ```
 > [!NOTE]
-> Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class, and feel free to use the specialised vector structs I have already made.
+> Check out [Vector3.h](includes/structs/Vector3.h) to see how a specialised vector struct is made using the base class,
+> and feel free to use the specialised vector structs I have already made.
 
 ## Colour Examples
 The colour types work the same the **`VectorN`** types, but you it can also be multiplied by any Vector type. It also has predefined colour constants.
+
+Below is a table of the different Colour types.
+
+|  dim  |     `float`      |     `uint8_t`      |
+| :---: | ---------------- | ------------------ |
+|   3   | **`ColourRGB`**  | **`ColourRGB255`** |
+|   4   |  **`Colour`**    |  **`Colour255`**   |
+
+> [!WARNING]
+> **`Colour`** types do not yet automatically scale their values from `{0.0 -> 1.0}` to `{0 -> 255}` and vice versa when converting to and from **`Colour255`** types.
+> You will have to divide and multiply by `255` manually currently.
 
 ```cpp
 #include "Colour.h"
@@ -111,25 +125,23 @@ The colour types work the same the **`VectorN`** types, but you it can also be m
 int main() {
 
     Colour foo(1,2,3);
-    Vector3 bar(4,5);
+    ColourRGB255 bar(123,15);
 
-    std::cout << foo <<       std::endl;
-    std::cout << bar <<       std::endl;
-    std::cout << foo + bar << std::endl;
-    std::cout << foo - bar << std::endl;
-    std::cout << foo * 2 <<   std::endl;
-    std::cout << foo / 2 <<   std::endl;
+    std::cout << foo               << std::endl;
+    std::cout << bar               << std::endl;
+    std::cout << foo + (bar / 255) << std::endl;
+    std::cout << foo - (bar / 255) << std::endl;
+    std::cout << foo * (bar / 255) << std::endl;
 }
 ```
 #### Output
 ```console
-(1, 2, 3)
-(4, 5, 0)
-(5, 7, 3)
-(-3, -3, 3)
-(2, 4, 6)
-(0.5, 1, 1.5)
+(1, 2, 3, 0)
+(123, 15, 0)
+(1.482..., 2.059..., 3)
+(-0.482..., -1.059..., -3)
+(0.482..., 0.118..., 0)
 ```
 
 ## TODO
-- [ ] Add conversion between Colour and Colour255 types by multiplying and dividing by 255.
+- [ ] Add conversion between Colour and Colour255 types by multiplying and dividing by `255`.
