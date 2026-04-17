@@ -44,6 +44,8 @@ namespace Vector {
 
 #define OTHER_TYPE _VectorT<T1, nDim1, MEMORY_STRUCTURE1>
 
+#define COMBINED_TYPE _VectorT<std::common_type<T,T1>, std::max<unsigned int>(nDim,nDim1)>
+
 #define OTHER_TYPE_TEMPLATE template<typename T1, size_t nDim1, typename MEMORY_STRUCTURE1>
 #define THIS_AND_OTHER_TYPE_TEMPLATE template<typename T, size_t nDim, typename MEMORY_STRUCTURE, typename T1, size_t nDim1, typename MEMORY_STRUCTURE1>
 
@@ -265,14 +267,9 @@ namespace Vector {
 
 		// Vector - Vector
 
-		OTHER_TYPE_TEMPLATE requires(nDim >= OTHER_DIMENTION_COUNT)
-			friend constexpr const THIS_TYPE operator - (const THIS_TYPE& first, const OTHER_TYPE& other) {
-			return THIS_TYPE(first) -= other;
-		}
-
-		OTHER_TYPE_TEMPLATE requires(nDim < OTHER_DIMENTION_COUNT)
-			friend constexpr const OTHER_TYPE operator - (const THIS_TYPE& first, const OTHER_TYPE& other) {
-			return OTHER_TYPE(first) -= other;
+		OTHER_TYPE_TEMPLATE
+			friend constexpr const COMBINED_TYPE operator - (const THIS_TYPE& first, const OTHER_TYPE& other) {
+			return COMBINED_TYPE(first) -= other;
 		}
 
 		// Vector / number
@@ -289,15 +286,11 @@ namespace Vector {
 
 		// Vector + Vector
 
-		OTHER_TYPE_TEMPLATE requires (nDim >= OTHER_DIMENTION_COUNT)
-			friend constexpr const THIS_TYPE operator + (const THIS_TYPE& first, const OTHER_TYPE& other) {
-			return THIS_TYPE(first) += other;
+		OTHER_TYPE_TEMPLATE
+			friend constexpr const COMBINED_TYPE operator + (const THIS_TYPE& first, const OTHER_TYPE& other) {
+			return COMBINED_TYPE(first) += other;
 		}
 
-		OTHER_TYPE_TEMPLATE requires (nDim < OTHER_DIMENTION_COUNT)
-			friend constexpr const OTHER_TYPE operator + (const THIS_TYPE& first, const OTHER_TYPE& other) {
-			return OTHER_TYPE(other) += first;
-		}
 
 		// Vector * number
 
