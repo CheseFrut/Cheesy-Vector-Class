@@ -105,7 +105,7 @@ int main() {
 > and feel free to use the specialised vector structs I have already made.
 
 ## Colour Examples
-The colour types work the same the **`VectorN`** types, but you it can also be multiplied by any Vector type. It also has predefined colour constants.
+The colour types work the same the **`VectorN`** types, but it can also be multiplied by any Vector type. It also has predefined colour constants.
 
 > [!WARNING]
 > **`Colour`** types do not yet automatically scale their values from `{0.0 -> 1.0}` to `{0 -> 255}` and vice versa when converting to and from **`Colour255`** types.
